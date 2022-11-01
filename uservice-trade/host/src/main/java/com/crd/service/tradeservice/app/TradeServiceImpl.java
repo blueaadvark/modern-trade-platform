@@ -24,20 +24,20 @@ class TradeServiceImpl implements TradeService {
     // one of 5 possible UUIDs to be reused in updates
     var scopedDigit = LocalDateTime.now().getSecond() % 2 + 1; // (from 1 to 2)
     var scopedAsString = "00000000-0000-0000-0000-00000000000" + scopedDigit;
-    var scopedUUID = UUID.fromString(scopedAsString);
+    var scopedUuid = UUID.fromString(scopedAsString);
 
     var exampleNewOwner = new OwnerDbo()
-        .setEntityId(scopedUUID)
+        .setEntityId(scopedUuid)
         .setName("initial name");
     var exampleOwner = ownerRepository
-        .findByEntityId(scopedUUID)
+        .findByEntityId(scopedUuid)
         .orElseGet(() -> ownerRepository.save(exampleNewOwner));
     // create or update example record
     var exampleNewProject = new ProjectDbo()
-        .setEntityId(scopedUUID)
+        .setEntityId(scopedUuid)
         .setOwner(exampleOwner)
         .setName("initial name");
-    var exampleProject = projectRepository.findById(scopedUUID)
+    var exampleProject = projectRepository.findById(scopedUuid)
         .orElseGet(() -> projectRepository.save(exampleNewProject));
     exampleProject.setName(LocalDateTime.now().toString());
     projectRepository.save(exampleProject);
