@@ -4,14 +4,14 @@ databaseChangeLog:
       author: siudeks
       changes:  
         - createTable:
-            tableName: OWNER
+            tableName: PROJECT
             columns:
             - column:
                 name: ENTITY_ID
                 type: UUID
                 constraints:
                   primaryKey: true
-                  primaryKeyName: OWNER_PK
+                  primaryKeyName: PROJECT_PK
                   nullable: false
             - column:
                 name: ENTITY_VERSION
@@ -23,4 +23,10 @@ databaseChangeLog:
                 type: VARCHAR(50)
                 constraints:
                   nullable: false
-
+            - column:
+                name: OWNER_ID
+                type: UUID
+                constraints:
+                  nullable: false
+                  foreignKeyName: PROJECT_OWNER_FK1
+                  references: project(ENTITY_ID)
