@@ -19,7 +19,7 @@ class TradeServiceImpl implements TradeService {
   /** Some code for my local tests. Please remove. */
   @Override
   public void testMethods() {
-    // one of 5 possible UUIDs to be reused in updates
+    // one of 2 possible UUIDs to be reused in updates
     var scopedDigit = LocalDateTime.now().getSecond() % 2 + 1; // (from 1 to 2)
     var scopedAsString = "00000000-0000-0000-0000-00000000000" + scopedDigit;
     var scopedUuid = UUID.fromString(scopedAsString);
