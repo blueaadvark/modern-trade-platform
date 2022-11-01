@@ -30,7 +30,7 @@ class TradeServiceImpl implements TradeService {
         .setEntityId(scopedUUID)
         .setName("initial name");
     var exampleOwner = ownerRepository
-        .findByEntityId(scopedUUID)
+        .findById(scopedUUID)
         .orElseGet(() -> ownerRepository.save(exampleNewOwner));
     // create or update example record
     var exampleNewProject = new ProjectDbo()
