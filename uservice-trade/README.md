@@ -16,5 +16,5 @@
 ## Architectural decisions (simplified version):
 - Use spring to run single uservices
 - Use grpc to communicate between 
-- ? use Gherkin to apply acceptance tests for the whole solution
-- ? expose Gateway as reusable OpenFeign interfaces to avoid duplication of client/server contracts
+- use Gherkin to apply acceptance tests for the whole solution
+- expose Gateway as reusable OpenFeign interfaces to avoid duplication of client/server contracts

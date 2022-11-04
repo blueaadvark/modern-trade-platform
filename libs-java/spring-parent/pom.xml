@@ -1,0 +1,133 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.crd.projectname</groupId>
+    <artifactId>shared-libs-parent</artifactId>
+    <version>${revision}</version>
+  </parent>
+  <artifactId>spring-parent</artifactId>
+  <packaging>pom</packaging>
+  <name>Spring Parent Maven Project</name>
+
+  <properties>
+    <!--
+      Disable warning
+      [WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent
+    !-->
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+    <java.version>17</java.version>
+
+    <!-- Spring and Spring cloud version has to bee kept in sync, more details at Spring Cloud webpage -->
+    <spring-boot.version>2.7.4</spring-boot.version>
+    <spring-cloud.version>2021.0.4</spring-cloud.version>
+
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>${spring-boot.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-dependencies</artifactId>
+        <version>${spring-cloud.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-maven-plugin</artifactId>
+          <version>${spring-boot.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>com.google.cloud.tools</groupId>
+          <artifactId>jib-maven-plugin</artifactId>
+          <version>3.3.1</version>
+          <configuration>
+            <from>
+              <!-- 
+                Define exact base image to avoid warning (below) when building example image (e.g. mvn -pl host jib:dockerBuild -Dimage=abc)
+                [WARNING] Base image 'eclipse-temurin:17-jre' does not use a specific image digest - build may not be reproducible
+              -->
+              <image>eclipse-temurin:17.0.4.1_1-jre-alpine</image>
+            </from>
+            <to>
+              <image>${image.path}</image>
+            </to>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.10.1</version>
+        <configuration>
+          <parameters>true</parameters>
+          <release>${java.version}</release>
+        </configuration>
+      </plugin>
+
+      <!-- Plugin required to run JUnit5 tests. -->
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.0.0-M7</version>
+        <configuration>
+          <!-- more flexibility for names of test classes. -->
+          <includes>
+            <include>*Spec.java</include>
+            <include>*Tests.java</include>
+            <include>*Test.java</include>
+          </includes>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <version>3.1.2</version>
+        <executions>
+          <execution>
+            <phase>process-sources</phase>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <configLocation>build-tools/google_checks_customized.xml</configLocation>
+          <violationSeverity>warning</violationSeverity>
+          <failOnViolation>true</failOnViolation>
+        </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>com.puppycrawl.tools</groupId>
+            <artifactId>checkstyle</artifactId>
+            <version>10.3</version>
+          </dependency>
+          <dependency>
+            <groupId>com.crd.service</groupId>
+            <artifactId>build-tools</artifactId>
+            <version>${revision}</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+
+    </plugins>
+  </build>
+
+</project>

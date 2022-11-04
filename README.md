@@ -52,9 +52,12 @@ Rule: Use scope 18*** to simplify our management of ports, use different ports t
 - GRPC: 18421
 
 ### TODO
-- Tests per µservice
 - Deployment to Kubernetes
 - Sharing events using Avro
 - Mapping gRpc models without NPE exceptions (using proper mapper)
 - GraphQL uservice
 - To discuss: Monitoring - Integration with OTL / Application Insight
+
+### Java platform
+- Java 17
+  - distribution: Azul, version: 17.0.5-zulu, used by developers and as base docker image. Personal preference, many other alternatives.

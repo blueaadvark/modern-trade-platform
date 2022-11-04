@@ -1,6 +1,12 @@
 <?xml version="1.0"?>
 <project>
   <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.crd.projectname</groupId>
+    <artifactId>spring-parent</artifactId>
+    <version>0.1.0-SNAPSHOT</version>
+    <relativePath/>
+  </parent>
   <groupId>com.crd.service</groupId>
   <artifactId>trade-service-parent</artifactId>
   <version>${revision}</version>
@@ -12,26 +18,9 @@
   </modules>
 
   <properties>
-    <!-- Enable Reproducible Builds mode for plugins
-    https://maven.apache.org/guides/mini/guide-reproducible-builds.html
-    -->
-    <project.build.outputTimestamp>10</project.build.outputTimestamp>
-
-    <!--
-      Disable warning
-      [WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent
-    !-->
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-
-    <spring-boot.version>2.7.4</spring-boot.version>
-    <java.version>17</java.version>
-    <spring-cloud.version>2021.0.4</spring-cloud.version>
-
-    <!--
-      Api version 
-    -->
-    <api.version>0.0.0-LOCAL</api.version>
+    <!-- Api version -->
+    <api.version>0.1.0-SNAPSHOT</api.version>
+    <libs.version>0.1.0-SNAPSHOT</libs.version>
   </properties>
 
   <dependencyManagement>
@@ -72,31 +61,12 @@
         <type>pom</type>
         <scope>import</scope>
       </dependency>
-      <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>${spring-boot.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-      <dependency>
-        <groupId>org.springframework.cloud</groupId>
-        <artifactId>spring-cloud-dependencies</artifactId>
-        <version>${spring-cloud.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
     </dependencies>
   </dependencyManagement>
 
   <build>
     <pluginManagement>
       <plugins>
-        <plugin>
-          <groupId>org.springframework.boot</groupId>
-          <artifactId>spring-boot-maven-plugin</artifactId>
-          <version>${spring-boot.version}</version>
-        </plugin>
         <plugin>
           <groupId>org.liquibase</groupId>
           <artifactId>liquibase-maven-plugin</artifactId>
@@ -136,32 +106,9 @@
           <dependency>
             <groupId>com.crd.service</groupId>
             <artifactId>build-tools</artifactId>
-            <version>0.0.0</version>
+            <version>${libs.version}</version>
           </dependency>
         </dependencies>
-      </plugin>
-
-      <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.10.1</version>
-        <configuration>
-          <parameters>true</parameters>
-          <release>${java.version}</release>
-        </configuration>
-      </plugin>
-
-      <!-- Plugin required to run JUnit5 tests. -->
-      <plugin>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>3.0.0-M7</version>
-        <configuration>
-          <!-- more flexibility for names of test classes. -->
-          <includes>
-            <include>*Spec.java</include>
-            <include>*Tests.java</include>
-            <include>*Test.java</include>
-          </includes>
-        </configuration>
       </plugin>
 
       <!-- 
