@@ -53,7 +53,7 @@ Rule: Use scope 18*** to simplify our management of ports, use different ports t
 
 ### TODO
 - Deployment to Kubernetes
-- Sharing events using Avro
+- Sharing event models using Avro
 - Mapping gRpc models without NPE exceptions (using proper mapper)
 - GraphQL uservice
 - To discuss: Monitoring - Integration with OTL / Application Insight
