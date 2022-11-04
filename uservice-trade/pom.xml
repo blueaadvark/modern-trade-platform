@@ -80,36 +80,6 @@
     </pluginManagement>
 
     <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-checkstyle-plugin</artifactId>
-        <version>3.1.2</version>
-        <executions>
-          <execution>
-            <phase>process-sources</phase>
-            <goals>
-              <goal>check</goal>
-            </goals>
-          </execution>
-        </executions>
-        <configuration>
-          <configLocation>build-tools/google_checks_customized.xml</configLocation>
-          <violationSeverity>warning</violationSeverity>
-          <failOnViolation>true</failOnViolation>
-        </configuration>
-        <dependencies>
-          <dependency>
-            <groupId>com.puppycrawl.tools</groupId>
-            <artifactId>checkstyle</artifactId>
-            <version>10.3</version>
-          </dependency>
-          <dependency>
-            <groupId>com.crd.service</groupId>
-            <artifactId>build-tools</artifactId>
-            <version>${libs.version}</version>
-          </dependency>
-        </dependencies>
-      </plugin>
 
       <!-- 
         Required by CI friendly multimodule maven project.

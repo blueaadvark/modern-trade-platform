@@ -52,23 +52,6 @@
           <artifactId>spring-boot-maven-plugin</artifactId>
           <version>${spring-boot.version}</version>
         </plugin>
-        <plugin>
-          <groupId>com.google.cloud.tools</groupId>
-          <artifactId>jib-maven-plugin</artifactId>
-          <version>3.3.1</version>
-          <configuration>
-            <from>
-              <!-- 
-                Define exact base image to avoid warning (below) when building example image (e.g. mvn -pl host jib:dockerBuild -Dimage=abc)
-                [WARNING] Base image 'eclipse-temurin:17-jre' does not use a specific image digest - build may not be reproducible
-              -->
-              <image>eclipse-temurin:17.0.4.1_1-jre-alpine</image>
-            </from>
-            <to>
-              <image>${image.path}</image>
-            </to>
-          </configuration>
-        </plugin>
       </plugins>
     </pluginManagement>
 
