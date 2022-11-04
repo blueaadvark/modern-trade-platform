@@ -50,8 +50,8 @@ class AppConfig {
   // packs non closeable item to AutoCloseable element
   private static Closeable.Of<ManagedChannel> asCloseable(ManagedChannel item) {
     val someNotTestedShutdownForChannelsInSeconds = 3;
-    Consumer<ManagedChannel> disposer = (it) -> {
-      item.shutdown();
+    Consumer<ManagedChannel> disposer = it -> {
+      it.shutdown();
       try {
         item.awaitTermination(someNotTestedShutdownForChannelsInSeconds, TimeUnit.SECONDS);
       } catch (InterruptedException e) {
