@@ -8,7 +8,7 @@
 
   <modules>
     <module>build-tools</module>
-    <module>spring-parent</module>
+    <module>uservice-spring-parent</module>
   </modules>
 
   <build>
