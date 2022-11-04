@@ -31,7 +31,7 @@
       <!-- gRpc modules -->
       <dependency>
         <groupId>com.crd.service</groupId>
-        <artifactId>uservice-calculation.api</artifactId>
+        <artifactId>uservice-calculation.rpc</artifactId>
         <version>${api.version}</version>
       </dependency>
       <dependency>

@@ -34,7 +34,7 @@
 
     <dependency>
       <groupId>com.crd.service</groupId>
-      <artifactId>uservice-calculation.api</artifactId>
+      <artifactId>uservice-calculation.rpc</artifactId>
     </dependency>
 
     <dependency>

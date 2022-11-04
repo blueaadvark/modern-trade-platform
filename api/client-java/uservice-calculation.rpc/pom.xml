@@ -6,11 +6,11 @@
     <version>${revision}</version>
   </parent>
 
-  <artifactId>uservice-calculation.api</artifactId>
+  <artifactId>uservice-calculation.rpc</artifactId>
   <packaging>jar</packaging>
 
   <properties>
-    <protoSourceRoot>../../schema/uservice-calculation.api</protoSourceRoot>
+    <protoSourceRoot>../../schema/uservice-calculation.rpc</protoSourceRoot>
   </properties>
 
 </project>
