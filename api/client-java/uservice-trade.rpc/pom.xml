@@ -6,7 +6,7 @@
     <version>${revision}</version>
   </parent>
 
-  <artifactId>uservice-trade.api</artifactId>
+  <artifactId>uservice-trade.rpc</artifactId>
   <packaging>jar</packaging>
 
   <properties>

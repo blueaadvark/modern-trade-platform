@@ -36,7 +36,7 @@
       </dependency>
       <dependency>
         <groupId>com.crd.service</groupId>
-        <artifactId>uservice-trade.api</artifactId>
+        <artifactId>uservice-trade.rpc</artifactId>
         <version>${api.version}</version>
       </dependency>
 

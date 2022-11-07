@@ -21,6 +21,7 @@
       <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
 
+    <!-- Adds live reload - application recompiles after changin source code. -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-devtools</artifactId>
@@ -39,7 +40,7 @@
 
     <dependency>
       <groupId>com.crd.service</groupId>
-      <artifactId>uservice-trade.api</artifactId>
+      <artifactId>uservice-trade.rpc</artifactId>
     </dependency>
 
     <dependency>

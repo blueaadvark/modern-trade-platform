@@ -60,4 +60,4 @@ Rule: Use scope 18*** to simplify our management of ports, use different ports t
 
 ### Java platform
 - Java 17
-  - distribution: Azul, version: 17.0.5-zulu, used by developers and as base docker image. Personal preference, many other alternatives.
+  - distribution: Azul, version: 17.0.4-zulu, used by developers and as base docker image. Personal preference, many other alternatives.
