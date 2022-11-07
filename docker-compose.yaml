@@ -46,4 +46,6 @@ services:
     depends_on:
       postgres:
         condition: service_started
+      init-local-sdk:
+        condition: service_completed_successfully
   

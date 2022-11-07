@@ -1,6 +1,4 @@
-# Thos dickerfile is used in order to run in 
-# - local stack to allow for developers run application locally
-# - BDD tests
+#
 FROM local-stack-java-sdk as build
 WORKDIR /uservice-trade-src
 
