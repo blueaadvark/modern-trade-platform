@@ -1,2 +1,2 @@
 # The dockerfile is used to host inidb projects from sources in docker-compose local stack.
-FROM eclipse-temurin:17.0.4.1_1-jre-alpine
+FROM eclipse-temurin:17.0.4.1_1-jdk-alpine
