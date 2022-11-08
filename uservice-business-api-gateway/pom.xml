@@ -7,8 +7,6 @@
     <version>0.1.0-SNAPSHOT</version>
     <relativePath />
   </parent>
-
-  <groupId>com.crd.service</groupId>
   <artifactId>business-api-gateway-parent</artifactId>
   <version>${revision}</version>
   <packaging>pom</packaging>
@@ -30,24 +28,24 @@
 
       <!-- gRpc modules -->
       <dependency>
-        <groupId>com.crd.service</groupId>
+        <groupId>com.crd.projectname</groupId>
         <artifactId>uservice-calculation.rpc</artifactId>
         <version>${api.version}</version>
       </dependency>
       <dependency>
-        <groupId>com.crd.service</groupId>
+        <groupId>com.crd.projectname</groupId>
         <artifactId>uservice-trade.rpc</artifactId>
         <version>${api.version}</version>
       </dependency>
 
       <!-- Project modules -->
       <dependency>
-        <groupId>com.crd.service</groupId>
+        <groupId>com.crd.projectname</groupId>
         <artifactId>business-api-gateway-api</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
-        <groupId>com.crd.service</groupId>
+        <groupId>com.crd.projectname</groupId>
         <artifactId>business-api-gateway-api-client</artifactId>
         <version>${project.version}</version>
       </dependency>

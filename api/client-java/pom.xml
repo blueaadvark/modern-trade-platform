@@ -1,7 +1,7 @@
 <project>
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.crd.service</groupId>
+  <groupId>com.crd.projectname</groupId>
   <artifactId>uservice-parent.api</artifactId>
   <version>${revision}</version>
   <packaging>pom</packaging>

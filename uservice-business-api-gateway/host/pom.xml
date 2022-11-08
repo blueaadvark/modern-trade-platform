@@ -1,7 +1,7 @@
 <project>
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>com.crd.service</groupId>
+    <groupId>com.crd.projectname</groupId>
     <artifactId>business-api-gateway-parent</artifactId>
     <version>${revision}</version>
   </parent>
@@ -28,18 +28,18 @@
     </dependency>
 
     <dependency>
-      <groupId>com.crd.service</groupId>
+      <groupId>com.crd.projectname</groupId>
       <artifactId>business-api-gateway-api</artifactId>
       <version>${project.version}</version>
     </dependency>
 
     <dependency>
-      <groupId>com.crd.service</groupId>
+      <groupId>com.crd.projectname</groupId>
       <artifactId>uservice-calculation.rpc</artifactId>
     </dependency>
 
     <dependency>
-      <groupId>com.crd.service</groupId>
+      <groupId>com.crd.projectname</groupId>
       <artifactId>uservice-trade.rpc</artifactId>
     </dependency>
 

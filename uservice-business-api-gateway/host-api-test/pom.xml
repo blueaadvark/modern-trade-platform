@@ -1,7 +1,7 @@
 <project>
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>com.crd.service</groupId>
+    <groupId>com.crd.projectname</groupId>
     <artifactId>business-api-gateway-parent</artifactId>
     <version>${revision}</version>
   </parent>
@@ -10,7 +10,7 @@
   <dependencies>
 
     <dependency>
-      <groupId>com.crd.service</groupId>
+      <groupId>com.crd.projectname</groupId>
       <artifactId>business-api-gateway-api-client</artifactId>
     </dependency>
 

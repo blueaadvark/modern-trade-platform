@@ -24,7 +24,7 @@
     <dependencies>
 
       <dependency>
-        <groupId>com.crd.service</groupId>
+        <groupId>com.crd.projectname</groupId>
         <artifactId>uservice-calculation.rpc</artifactId>
         <version>${api.version}</version>
       </dependency>
