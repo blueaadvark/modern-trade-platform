@@ -6,7 +6,7 @@
     <version>${revision}</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
-  <artifactId>trade-service-init-db</artifactId>
+  <artifactId>trade-service-initdb</artifactId>
   <packaging>jar</packaging>
   <description>Trade Service Database init</description>
   <dependencies>

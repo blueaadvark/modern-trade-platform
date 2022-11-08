@@ -11,7 +11,7 @@ Microservice-based trading application featuring the following:
 - api - location for the gRPC api proto files for each service, and client building project for java (+ other languages in future if needed)
 - libs-java - reusable code to reuse in uservices, deployed to external maven repository
 - service-* - folder with a local stack service, designed to be run by root docker-compose
-- uservice-* - seperated µservice designed to be compiled, developed and run separately. It may contains init-db subproject to apply database migration
+- uservice-* - seperated µservice designed to be compiled, developed and run separately. It may contains initdb subproject to apply database migration
 ### Other folders
 - .api.events - (not existing yet) proposed name for place of avro api, exposed in known-location for other services/.
 ### Other files

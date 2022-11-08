@@ -14,7 +14,7 @@
 
   <modules>
     <module>host</module>
-    <module>init-db</module>
+    <module>initdb</module>
   </modules>
 
   <properties>

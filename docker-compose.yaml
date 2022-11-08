@@ -12,7 +12,7 @@ services:
       context: service-postgres
       # specially prepared dockerfile to init database schemas per application
       # in the same way how the expect in local stack
-      # and run init-db parts of all uservices
+      # and run initdb parts of all uservices
       dockerfile: Dockerfile.local
     environment:
       # some master user and password. Please do not use it in any microservice.
@@ -28,10 +28,10 @@ services:
       context: service-localsdk
       dockerfile: Dockerfile.local
 
-  uservice-trade-init-db:
+  uservice-trade-initdb:
     build:
       context: uservice-trade/
-      dockerfile: ./init-db/Dockerfile.local
+      dockerfile: ./initdb/Dockerfile.local
     environment:
       # well-known properties defined by init scripts of our postgresql
       - DATABASE_USERNAME=uservice_trade_role_name
@@ -41,7 +41,7 @@ services:
     volumes:
       # Map local maven repo to speed up build by avoiding downloading maven dependencies each time to new docker image
       - ~/.m2/:/.m2
-      # Map local source files to allow run init-db module from sources
+      # Map local source files to allow run initdb module from sources
       - ./uservice-trade/:/uservice-trade-src
     depends_on:
       postgres:
