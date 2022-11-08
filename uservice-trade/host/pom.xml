@@ -1,13 +1,12 @@
 <project>
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>com.crd.service</groupId>
+    <groupId>com.crd.projectname</groupId>
     <artifactId>trade-service-parent</artifactId>
     <version>${revision}</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
-  <artifactId>trade-service</artifactId>
-  <packaging>jar</packaging>
+  <artifactId>trade-service-host</artifactId>
   <description>Trade Service</description>
   <dependencies>
 
