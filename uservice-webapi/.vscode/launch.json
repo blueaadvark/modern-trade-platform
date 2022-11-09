@@ -6,7 +6,7 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Launch BusinessApiGatewayApplication with Dapr",
+            "name": "Launch webapi with Dapr",
             "request": "launch",
             "mainClass": "com.crd.service.businessapigateway.BusinessApiGatewayApplication",
             "projectName": "webapi",
@@ -18,10 +18,13 @@
         },
         {
             "type": "java",
-            "name": "Launch BusinessApiGatewayApplication",
+            "name": "Launch webapi",
             "request": "launch",
             "mainClass": "com.crd.service.businessapigateway.BusinessApiGatewayApplication",
-            "projectName": "webapi"
+            "projectName": "webapi",
+            "env": {
+                "SPRING_PROFILES_ACTIVE": "local"
+            },
         }        
     ]
 }
