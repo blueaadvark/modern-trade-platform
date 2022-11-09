@@ -8,7 +8,7 @@ import feign.RequestInterceptor;
 class HelloServiceConfiguration {
 
   static final String DAPR_APP_ID_KEY = "dapr-app-id";
-  static final String DAPR_APP_ID_GATEWAY = "uservice-business-api-gateway";
+  static final String DAPR_APP_ID_GATEWAY = "uservice-webapi";
 
   /**
    * Adds dapr-add-id to requests so that REST calls are directed to gateway µservice.

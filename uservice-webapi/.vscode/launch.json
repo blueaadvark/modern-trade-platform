@@ -9,7 +9,7 @@
             "name": "Launch BusinessApiGatewayApplication with Dapr",
             "request": "launch",
             "mainClass": "com.crd.service.businessapigateway.BusinessApiGatewayApplication",
-            "projectName": "business-api-gateway",
+            "projectName": "webapi",
             "env": {
                 "SPRING_PROFILES_ACTIVE": "local"
             },
@@ -21,7 +21,7 @@
             "name": "Launch BusinessApiGatewayApplication",
             "request": "launch",
             "mainClass": "com.crd.service.businessapigateway.BusinessApiGatewayApplication",
-            "projectName": "business-api-gateway"
+            "projectName": "webapi"
         }        
     ]
 }

@@ -2,12 +2,12 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.crd.projectname</groupId>
-    <artifactId>business-api-gateway-parent</artifactId>
+    <artifactId>webapi-parent</artifactId>
     <version>${revision}</version>
   </parent>
-  <artifactId>business-api-gateway-host</artifactId>
-  <name>business-api-gateway</name>
-  <description>Business API Gateway</description>
+  <artifactId>webapi-host</artifactId>
+  <name>webapi</name>
+  <description>Webapi</description>
 
   <dependencies>
 
@@ -29,7 +29,7 @@
 
     <dependency>
       <groupId>com.crd.projectname</groupId>
-      <artifactId>business-api-gateway-api</artifactId>
+      <artifactId>webapi-api</artifactId>
       <version>${project.version}</version>
     </dependency>
 

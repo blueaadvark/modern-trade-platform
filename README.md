@@ -27,8 +27,8 @@ Microservice-based trading application featuring the following:
 
 ## Avoid clash of ports:
 Rule: Use scope 18*** to simplify our management of ports, use different ports to run uservices locally
-### Business Api Gateway
-- dapr app id: uservice-business-api-gateway
+### Webapi Service
+- dapr app id: uservice-webapi
 - HTTP: 18010
 - GRPC: 18011
 - Swagger URL: http://localhost:8080/swagger-ui/index.html

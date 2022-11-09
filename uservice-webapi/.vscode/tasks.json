@@ -2,7 +2,7 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
-			"appId": "uservice-business-api-gateway",
+			"appId": "uservice-webapi",
 			"appPort": 18010,
 			"appProtocol": "http",
 			"componentsPath": "../.dapr/components",
@@ -13,7 +13,7 @@
 			"type": "dapr"
 		},
 		{
-			"appId": "uservice-business-api-gateway",
+			"appId": "uservice-webapi",
 			"label": "daprd-down",
 			"type": "daprd-down"
 		}
