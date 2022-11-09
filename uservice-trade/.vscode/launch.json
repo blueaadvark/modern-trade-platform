@@ -21,7 +21,10 @@
             "name": "Launch TradeServiceApplication",
             "request": "launch",
             "mainClass": "com.crd.service.tradeservice.TradeServiceApplication",
-            "projectName": "trade-service"
+            "projectName": "trade-service",
+            "env": {
+                "SPRING_PROFILES_ACTIVE": "local"
+            },
         },
     ]
 }

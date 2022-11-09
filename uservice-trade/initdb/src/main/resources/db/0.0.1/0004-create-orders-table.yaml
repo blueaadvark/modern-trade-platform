@@ -1,0 +1,50 @@
+databaseChangeLog:
+  - changeSet:  
+      id: 20221101-1445
+      author: fmcshane
+      changes:  
+        - createTable:
+            tableName: ORDERS
+            columns:
+            - column:
+                name: ENTITY_ID
+                type: UUID
+                constraints:
+                  primaryKey: true
+                  primaryKeyName: ORDER_PK
+                  nullable: false
+            - column:
+                name: ENTITY_VERSION
+                type: BIGINT
+                constraints:
+                  nullable: false
+            - column:
+                name: TYPE
+                type: VARCHAR(20)
+                constraints:
+                  nullable: false
+            - column:
+                name: CURRENCY
+                type: VARCHAR(3)
+                constraints:
+                  nullable: false
+            - column:
+                name: INDEX
+                type: VARCHAR(20)
+                constraints:
+                  nullable: false
+            - column:
+                name: MATURITY
+                type: VARCHAR(20)
+                constraints:
+                  nullable: false
+            - column:
+                name: NOTIONAL
+                type: VARCHAR(20)
+                constraints:
+                  nullable: false
+            - column:
+                name: TRADER
+                type: VARCHAR(20)
+                constraints:
+                  nullable: false
