@@ -12,6 +12,7 @@
 
 ## Known issues
 - sudo chown -R $USER . (when Failed to clean project)
+- sudo chown -R $USER ~/.m2 (when faile do download dependencies to .m2 as they are already locked by more powerful Docker engine)
 
 ## Modularity decisions
 - host application does not apply any database changes / migrations when started
