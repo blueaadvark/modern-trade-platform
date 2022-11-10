@@ -24,20 +24,6 @@ import lombok.SneakyThrows;
 @ExtendWith(PostgresDbExtension.class)
 class RollbackTest {
 
-  // @Container
-  // static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:14")
-  //         .withUsername("testcontainers")
-  //         .withPassword("testcontainers")
-  //         .withDatabaseName("testdb");
-          
-  // @DynamicPropertySource
-  // static void registerPgProperties(DynamicPropertyRegistry registry) {
-  //   registry.add("spring.datasource.url", () -> postgres.getJdbcUrl());
-  //   registry.add("spring.datasource.username", () -> postgres.getUsername());
-  //   registry.add("spring.datasource.password", () -> postgres.getPassword());
-  // }
-
-
   @Autowired
   SpringLiquibase liquibaseBean;
 

@@ -30,28 +30,4 @@ public final class PostgresDbExtension implements BeforeAllCallback, AfterAllCal
     postgres.stop();
   }
 
-
-  // @Autowired
-  // SpringLiquibase liquibaseBean;
-
-  // // We need rollback for database operations so that rollback procedure is
-  // required for all liquibase changesets.
-  // @Test
-  // @SneakyThrows
-  // void should_rollback_all_changes() {
-  // var dataSource = liquibaseBean.getDataSource();
-  // var connection = dataSource.getConnection();
-  // var database =
-  // DatabaseFactory.getInstance().findCorrectDatabaseImplementation(new
-  // JdbcConnection(connection));
-  // @Cleanup
-  // var liquibase = new Liquibase("db/changelog-master.yaml", new
-  // ClassLoaderResourceAccessor(), database);
-  // var initialTag = "v0"; // well-known tag in database used for rollback tests
-  // Assertions
-  // .assertThatCode(() -> liquibase.rollback(initialTag, (String) null))
-  // .as("All operation should include rollback operation")
-  // .doesNotThrowAnyException();
-  // }
-
 }
