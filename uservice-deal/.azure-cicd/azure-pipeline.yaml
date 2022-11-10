@@ -19,7 +19,7 @@ trigger:
   paths:
     include:
       # We have to include all folders where source files are located
-      - /uservice-trade/
+      - /uservice-deal/
       - /api/
       - /libs-java/
 
@@ -30,7 +30,7 @@ pr:
   paths:
     include:
       # the same folders as for trigger
-      - /uservice-trade/
+      - /uservice-deal/
       - /api/
       - /libs-java/
 
@@ -51,7 +51,7 @@ jobs:
         displayName: Cache Maven local repo
 
       - bash: |
-          echo "##vso[task.setvariable variable=SEMVERSION]$(head -1 uservice-trade/.semversion)"
+          echo "##vso[task.setvariable variable=SEMVERSION]$(head -1 uservice-deal/.semversion)"
         displayName: Use version from local .semversion file
 
       - task: Maven@4
@@ -84,7 +84,7 @@ jobs:
         displayName: 'µService test and build'
         inputs:
           mavenOptions: $(MAVEN_OPTS)
-          mavenPomFile: 'uservice-trade/pom.xml'
+          mavenPomFile: 'uservice-deal/pom.xml'
           goals: 'install'
           javaHomeOption: JDKVersion
           jdkVersionOption: 1.17
@@ -99,7 +99,7 @@ jobs:
         displayName: Build µService docker image
         inputs:
           mavenOptions: $(MAVEN_OPTS)
-          mavenPomFile: 'uservice-trade/pom.xml'
+          mavenPomFile: 'uservice-deal/pom.xml'
           goals: 'jib:buildTar'
           javaHomeOption: JDKVersion
           jdkVersionOption: 1.17

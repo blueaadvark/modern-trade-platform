@@ -7,7 +7,7 @@
   <packaging>pom</packaging>
 
   <modules>
-    <module>uservice-trade.rpc</module>
+    <module>uservice-deal.rpc</module>
     <module>uservice-calculation.rpc</module>
   </modules>
 

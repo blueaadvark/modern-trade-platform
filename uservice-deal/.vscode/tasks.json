@@ -2,7 +2,7 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
-			"appId": "uservice-trade",
+			"appId": "uservice-deal",
 			"appPort": 18121,
 			"appProtocol": "grpc",
 			"componentsPath": "../.dapr/components",
@@ -11,7 +11,7 @@
 			"type": "dapr"
 		},
 		{
-			"appId": "uservice-trade",
+			"appId": "uservice-deal",
 			"label": "daprd-down",
 			"type": "daprd-down"
 		}

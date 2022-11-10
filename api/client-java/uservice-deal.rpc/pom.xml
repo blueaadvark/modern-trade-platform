@@ -6,11 +6,11 @@
     <version>${revision}</version>
   </parent>
 
-  <artifactId>uservice-trade.rpc</artifactId>
+  <artifactId>uservice-deal.rpc</artifactId>
   <packaging>jar</packaging>
 
   <properties>
-    <protoSourceRoot>../../schema/uservice-trade.rpc</protoSourceRoot>
+    <protoSourceRoot>../../schema/uservice-deal.rpc</protoSourceRoot>
   </properties>
 
 </project>

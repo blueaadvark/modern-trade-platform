@@ -34,7 +34,7 @@ Rule: Use scope 18*** to simplify our management of ports, use different ports t
 - Swagger URL: http://localhost:8080/swagger-ui/index.html
 
 ### Trade Service
-- dapr app id: uservice-trade
+- dapr app id: uservice-deal
 - HTTP: 18120
 - GRPC: 18121
 

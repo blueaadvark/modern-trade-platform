@@ -7,7 +7,7 @@ Example:
 To configure properties for HELM installer, define variables with definitions of required tags to be deployed:
 ```bash
 export USERVICE_WEBAPI_IMAGE_TAG=latest
-export USERVICE_TRADE_IMAGE_TAG=latest
+export USERVICE_DEAL_IMAGE_TAG=latest
 export USERVICE_CALCULATION_IMAGE_TAG=latest
 ./makeconfig.sh
 ```

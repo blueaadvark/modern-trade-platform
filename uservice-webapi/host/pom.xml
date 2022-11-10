@@ -40,7 +40,7 @@
 
     <dependency>
       <groupId>com.crd.projectname</groupId>
-      <artifactId>uservice-trade.rpc</artifactId>
+      <artifactId>uservice-deal.rpc</artifactId>
     </dependency>
 
     <dependency>

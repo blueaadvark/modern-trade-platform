@@ -28,21 +28,21 @@ services:
       context: service-localsdk
       dockerfile: Dockerfile.local
 
-  uservice-trade-initdb:
+  uservice-deal-initdb:
     build:
-      context: uservice-trade/
+      context: uservice-deal/
       dockerfile: ./initdb/Dockerfile.local
     environment:
       # well-known properties defined by init scripts of our postgresql
-      - DATABASE_USERNAME=uservice_trade_role_name
-      - DATABASE_PASSWORD=uservice_trade_role_password
-      - DATABASE_SCHEMA=uservice_trade
+      - DATABASE_USERNAME=uservice_deal_role_name
+      - DATABASE_PASSWORD=uservice_deal_role_password
+      - DATABASE_SCHEMA=uservice_deal
       - DATABASE_JDBC=jdbc:postgresql://postgres:5432/devlocaldb
     volumes:
       # Map local maven repo to speed up build by avoiding downloading maven dependencies each time to new docker image
       - ~/.m2/:/.m2
       # Map local source files to allow run initdb module from sources
-      - ./uservice-trade/:/uservice-trade-src
+      - ./uservice-deal/:/uservice-deal-src
     depends_on:
       postgres:
         condition: service_started
