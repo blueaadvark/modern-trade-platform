@@ -15,7 +15,7 @@ trigger:
   batch: true
   branches:
     include:
-      - master
+      - main
   paths:
     include:
       # We have to include all folders where source files are located
@@ -26,7 +26,7 @@ trigger:
 pr:
   branches:
     include:
-      - master
+      - main
   paths:
     include:
       # the same folders as for trigger
