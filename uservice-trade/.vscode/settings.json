@@ -1,5 +1,8 @@
 {
     "java.configuration.updateBuildConfiguration": "automatic",
     "java.checkstyle.configuration": "${workspaceFolder}/build-tools/src/main/resources/build-tools/google_checks_customized.xml",
-    "java.checkstyle.version": "10.3"
+    "java.checkstyle.version": "10.3",
+    "yaml.schemas": {
+        "https://raw.githubusercontent.com/microsoft/azure-pipelines-vscode/master/service-schema.json": "file:///home/siudeks/git/modern-trade-platform/uservice-trade/.azure-cicd/azure-pipeline.yaml"
+    }
 }

@@ -1,0 +1,95 @@
+resources:
+  - repo: self
+
+variables:
+  # connection, defined manually in .
+  # The connection used in pipeline allows to access to ACR projectname.azurecr.io
+  dockerRegistryServiceConnection: "projectname-cr-dev"
+  # name of the registry where the image is hosted on.
+  # in Docker world, it is also part of image name (prefix)
+  containerRegistry: "charlesriverdevunofficial.azurecr.io"
+  MAVEN_CACHE_FOLDER: $(Pipeline.Workspace)/.m2/repository
+  MAVEN_OPTS: '-Dmaven.repo.local=$(MAVEN_CACHE_FOLDER)'
+
+trigger:
+  batch: true
+  branches:
+    include:
+      - master
+  paths:
+    include:
+      # We have to include all folders where source files are located
+      - /uservice-trade/
+      - /api/
+      - /libs-java/
+
+pr:
+  branches:
+    include:
+      - master
+  paths:
+    include:
+      # the same folders as for trigger
+      - /uservice-trade/
+      - /api/
+      - /libs-java/
+
+jobs:
+  - job: CICD
+    displayName: µService Trade CI/CD build
+    pool:
+      vmImage: ubuntu-latest
+
+    steps:
+      - task: Cache@2
+        inputs:
+          key: 'maven | "$(Agent.OS)" | **/pom.xml'
+          restoreKeys: |
+            maven | "$(Agent.OS)"
+            maven
+          path: $(MAVEN_CACHE_FOLDER)
+        displayName: Cache Maven local repo
+
+      - bash: |
+          echo "##vso[task.setvariable variable=my_version]$(head -1 uservice-trade/.semversion)"
+        displayName: Use version from local .semversion file
+
+      - task: Maven@4
+        displayName: 'API libs build'
+        inputs:
+          mavenOptions: $(MAVEN_OPTS)
+          mavenPomFile: 'api/client-java/pom.xml'
+          goals: 'install'
+          javaHomeOption: JDKVersion
+          jdkVersionOption: 1.17
+          # options:
+          #  - disable log entries (a lot of entries) related to artifacts downloaded by maven
+          options: -B --no-transfer-progress
+          checkStyleRunAnalysis: true # We use checkstyle in coding, so let's use it with Maven as well
+
+      - task: Maven@4
+        displayName: 'Shared libs build'
+        inputs:
+          mavenOptions: $(MAVEN_OPTS)
+          mavenPomFile: 'libs-java/pom.xml'
+          goals: 'install'
+          javaHomeOption: JDKVersion
+          jdkVersionOption: 1.17
+          # options:
+          #  - disable log entries (a lot of entries) related to artifacts downloaded by maven
+          options: -B --no-transfer-progress
+          checkStyleRunAnalysis: true # We use checkstyle in coding, so let's use it with Maven as well
+
+      - task: Maven@4
+        displayName: 'µService build'
+        inputs:
+          mavenOptions: $(MAVEN_OPTS)
+          mavenPomFile: 'uservice-trade/pom.xml'
+          goals: 'install'
+          javaHomeOption: JDKVersion
+          jdkVersionOption: 1.17
+          # options:
+          #  - disable log entries (a lot of entries) related to artifacts downloaded by maven
+          options: -B --no-transfer-progress
+          checkStyleRunAnalysis: true # We use checkstyle in coding, so let's use it with Maven as well
+          publishJUnitResults: true

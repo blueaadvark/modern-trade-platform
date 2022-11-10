@@ -1,8 +1,7 @@
-package com.crd.service;
+package com.crd.projectname;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
 
 @SpringBootApplication
 class Program {

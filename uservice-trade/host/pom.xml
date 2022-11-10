@@ -16,6 +16,22 @@
     </dependency>
 
     <dependency>
+      <groupId>com.crd.projectname</groupId>
+      <artifactId>trade-service-tests</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.crd.projectname</groupId>
+      <artifactId>trade-service-migratedb</artifactId>
+      <!--
+        Intentionally used just for tests as it is not a part of the host application,
+        used reused by initdb module to migrate db to the latest version.
+        Host application is liquibase-free
+      -->
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
     </dependency>

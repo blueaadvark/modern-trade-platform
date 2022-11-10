@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:  
-      id: 20221016-1613
+      id: 20221016-1615
       author: siudeks
       changes:  
         - createTable:

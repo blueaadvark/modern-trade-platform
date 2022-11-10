@@ -1,5 +1,7 @@
 package com.crd.service.tradeservice.grpc;
 
+import java.util.concurrent.TimeUnit;
+
 import javax.annotation.PostConstruct;
 
 import org.springframework.stereotype.Component;
@@ -37,5 +39,6 @@ public class GrpcServer implements AutoCloseable {
   @Override
   public void close() throws Exception {
     server.shutdownNow();
+    server.awaitTermination(3, TimeUnit.SECONDS);
   }
 }

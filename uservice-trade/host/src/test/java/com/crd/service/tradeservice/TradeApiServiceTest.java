@@ -2,20 +2,21 @@ package com.crd.service.tradeservice;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
-import org.springframework.test.context.ActiveProfiles;
 
 import com.crd.common.grpc.TradeResources.GetVersionRequest;
 import com.crd.common.grpc.TradeResources.GetVersionResponse;
 import com.crd.common.grpc.TradeServiceGrpc;
+import com.crd.projectname.PostgresDbExtension;
 
 import io.grpc.ManagedChannelBuilder;
 
 @SpringBootTest(webEnvironment = WebEnvironment.NONE)
-@ActiveProfiles("test")
-public class TradeApiServiceTest {
+@ExtendWith(PostgresDbExtension.class)
+class TradeApiServiceTest {
 
   @Value("${grpc.server.port}")
   private int grpcPort;

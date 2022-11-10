@@ -5,7 +5,7 @@
     <groupId>com.crd.projectname</groupId>
     <artifactId>spring-parent</artifactId>
     <version>0.1.0-SNAPSHOT</version>
-    <relativePath/>
+    <relativePath />
   </parent>
   <groupId>com.crd.projectname</groupId>
   <artifactId>trade-service-parent</artifactId>
@@ -15,6 +15,8 @@
   <modules>
     <module>host</module>
     <module>initdb</module>
+    <module>tests</module>
+    <module>migratedb</module>
   </modules>
 
   <properties>
@@ -28,10 +30,27 @@
 
       <dependency>
         <groupId>com.crd.projectname</groupId>
+        <artifactId>trade-service-initdb</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.crd.projectname</groupId>
+        <artifactId>trade-service-tests</artifactId>
+        <version>${project.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>com.crd.projectname</groupId>
+        <artifactId>trade-service-migratedb</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.crd.projectname</groupId>
         <artifactId>uservice-trade.rpc</artifactId>
         <version>${api.version}</version>
       </dependency>
-      
+
       <dependency>
         <groupId>io.dapr</groupId>
         <artifactId>dapr-sdk</artifactId>
@@ -80,6 +99,18 @@
     </pluginManagement>
 
     <plugins>
+
+      <!-- 
+        Without the plugin spring-boot:run is not able to compile dependencies
+        https://github.com/spring-projects/spring-boot/issues/3436#issuecomment-236213126
+      -->
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+          <skip>true</skip>
+        </configuration>
+      </plugin>
 
       <!-- 
         Required by CI friendly multimodule maven project.

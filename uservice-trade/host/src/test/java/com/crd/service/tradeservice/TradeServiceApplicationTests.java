@@ -1,12 +1,14 @@
 package com.crd.service.tradeservice;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
-import org.springframework.test.context.ActiveProfiles;
+
+import com.crd.projectname.PostgresDbExtension;
 
 @SpringBootTest(webEnvironment = WebEnvironment.NONE)
-@ActiveProfiles("test")
+@ExtendWith(PostgresDbExtension.class)
 class TradeServiceApplicationTests {
 
   @Test

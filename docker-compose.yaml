@@ -22,7 +22,7 @@ services:
     ports:
       - 5432:5432
 
-  init-local-sdk:
+  local-stack-java-sdk-build:
     image: local-stack-java-sdk
     build:
       context: service-localsdk
@@ -46,6 +46,6 @@ services:
     depends_on:
       postgres:
         condition: service_started
-      init-local-sdk:
+      local-stack-java-sdk-build:
         condition: service_completed_successfully
   

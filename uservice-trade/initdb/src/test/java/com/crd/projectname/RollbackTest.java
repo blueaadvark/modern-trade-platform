@@ -1,17 +1,15 @@
-package com.crd.service;
+package com.crd.projectname;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
-import org.springframework.test.context.DynamicPropertyRegistry;
-import org.springframework.test.context.DynamicPropertySource;
-import org.testcontainers.containers.PostgreSQLContainer;
-import org.testcontainers.junit.jupiter.Container;
-import org.testcontainers.junit.jupiter.Testcontainers;
+
+import com.crd.projectname.PostgresDbExtension;
 
 import liquibase.Liquibase;
 import liquibase.database.DatabaseFactory;
@@ -23,21 +21,21 @@ import lombok.SneakyThrows;
 
 @DisplayNameGeneration(DisplayNameGenerator.IndicativeSentences.class)
 @SpringBootTest(webEnvironment = WebEnvironment.NONE)
-@Testcontainers
+@ExtendWith(PostgresDbExtension.class)
 class RollbackTest {
 
-  @Container
-  static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:14")
-          .withUsername("testcontainers")
-          .withPassword("testcontainers")
-          .withDatabaseName("testdb");
+  // @Container
+  // static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:14")
+  //         .withUsername("testcontainers")
+  //         .withPassword("testcontainers")
+  //         .withDatabaseName("testdb");
           
-  @DynamicPropertySource
-  static void registerPgProperties(DynamicPropertyRegistry registry) {
-    registry.add("spring.datasource.url", () -> postgres.getJdbcUrl());
-    registry.add("spring.datasource.username", () -> postgres.getUsername());
-    registry.add("spring.datasource.password", () -> postgres.getPassword());
-  }
+  // @DynamicPropertySource
+  // static void registerPgProperties(DynamicPropertyRegistry registry) {
+  //   registry.add("spring.datasource.url", () -> postgres.getJdbcUrl());
+  //   registry.add("spring.datasource.username", () -> postgres.getUsername());
+  //   registry.add("spring.datasource.password", () -> postgres.getPassword());
+  // }
 
 
   @Autowired
