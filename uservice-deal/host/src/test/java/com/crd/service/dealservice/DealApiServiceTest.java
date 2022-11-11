@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 
-import com.crd.common.grpc.TradeResources.GetVersionRequest;
-import com.crd.common.grpc.TradeResources.GetVersionResponse;
-import com.crd.common.grpc.TradeServiceGrpc;
+import com.crd.common.grpc.DealResources.GetVersionRequest;
+import com.crd.common.grpc.DealResources.GetVersionResponse;
+import com.crd.common.grpc.DealServiceGrpc;
 import com.crd.projectname.PostgresDbExtension;
 
 import io.grpc.ManagedChannelBuilder;
@@ -27,7 +27,7 @@ class DealApiServiceTest {
     var channel = ManagedChannelBuilder.forAddress("localhost", grpcPort)
         .usePlaintext()
         .build();
-    var service = TradeServiceGrpc.newBlockingStub(channel);
+    var service = DealServiceGrpc.newBlockingStub(channel);
     var request = GetVersionRequest.newBuilder()
         .build();
     

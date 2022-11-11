@@ -2,7 +2,7 @@ syntax = "proto3";
 option java_multiple_files = true;
 package com.crd.common.grpc;
 
-import "trade_resources.proto";
+import "deal_resources.proto";
 
 message Trade {
     int64 tradeId = 1;
@@ -12,8 +12,8 @@ message Trade {
     string tradeMaturity = 5;
 }
 
-// The Trade Service definition.
-service TradeService {
+// The Deal Service definition.
+service DealService {
     // Get trade By Trade ID
     rpc getTrade (Trade) returns (Trade) {
     }

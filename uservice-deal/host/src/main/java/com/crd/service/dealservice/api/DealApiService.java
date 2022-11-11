@@ -8,15 +8,15 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Component;
 
-import com.crd.common.grpc.TradeResources.CreateOrderRequest;
-import com.crd.common.grpc.TradeResources.CreateOrderResponse;
-import com.crd.common.grpc.TradeResources.GetVersionRequest;
-import com.crd.common.grpc.TradeResources.GetVersionResponse;
+import com.crd.common.grpc.DealResources.CreateOrderRequest;
+import com.crd.common.grpc.DealResources.CreateOrderResponse;
+import com.crd.common.grpc.DealResources.GetVersionRequest;
+import com.crd.common.grpc.DealResources.GetVersionResponse;
 import com.crd.service.dealservice.app.InstrumentTemplateRepository;
 import com.crd.service.dealservice.app.OrderDbo;
 import com.crd.service.dealservice.app.OrderRepository;
 import com.crd.service.dealservice.app.DealService;
-import com.crd.common.grpc.TradeServiceGrpc;
+import com.crd.common.grpc.DealServiceGrpc;
 
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -30,7 +30,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class DealApiService extends TradeServiceGrpc.TradeServiceImplBase {
+public class DealApiService extends DealServiceGrpc.DealServiceImplBase {
 
   private final DealService tradeService;
   private final OrderRepository orderRepository;
