@@ -2,12 +2,12 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.crd.projectname</groupId>
-    <artifactId>trade-service-parent</artifactId>
+    <artifactId>deal-service-parent</artifactId>
     <version>${revision}</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
-  <artifactId>trade-service-host</artifactId>
-  <description>Trade Service</description>
+  <artifactId>deal-service-host</artifactId>
+  <description>Deal Service</description>
   <dependencies>
 
     <dependency>
@@ -17,12 +17,12 @@
 
     <dependency>
       <groupId>com.crd.projectname</groupId>
-      <artifactId>trade-service-tests</artifactId>
+      <artifactId>deal-service-tests</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>com.crd.projectname</groupId>
-      <artifactId>trade-service-migratedb</artifactId>
+      <artifactId>deal-service-migratedb</artifactId>
       <!--
         Intentionally used just for tests as it is not a part of the host application,
         used reused by initdb module to migrate db to the latest version.
@@ -42,6 +42,11 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-devtools</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-freemarker</artifactId>
     </dependency>
 
     <dependency>

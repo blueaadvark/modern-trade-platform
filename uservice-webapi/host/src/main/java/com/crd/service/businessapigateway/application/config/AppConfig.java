@@ -21,10 +21,10 @@ import lombok.val;
 class AppConfig {
 
   /**
-   * Build managed channel for Trade GRPC connection.
+   * Build managed channel for Deal GRPC connection.
    */
   @Bean
-  Closeable.Of<ManagedChannel> tradeManagedChannel(TradeServiceProperties props) {
+  Closeable.Of<ManagedChannel> dealManagedChannel(DealServiceProperties props) {
     var daprAppId = props.getDaprAppId();
     var channel = ManagedChannelBuilder.forAddress(props.getHost(), props.getPort())
         .intercept(GrpcUtils.addTargetDaprApplicationId(daprAppId))

@@ -7,7 +7,7 @@ import lombok.experimental.Accessors;
 
 /** 
  * Simple wrapper for non-closeable beans, managed by DI.
- * Allows to close beans whrn ApplicationClonext is closing.
+ * Allows to close beans whrn ApplicationConext is closing.
  */
 public interface Closeable {
   

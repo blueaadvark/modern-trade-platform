@@ -2,13 +2,13 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.crd.projectname</groupId>
-    <artifactId>trade-service-parent</artifactId>
+    <artifactId>deal-service-parent</artifactId>
     <version>${revision}</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
-  <artifactId>trade-service-initdb</artifactId>
+  <artifactId>deal-service-initdb</artifactId>
   <packaging>jar</packaging>
-  <description>Trade Service Database init</description>
+  <description>Deal Service Database init</description>
   <dependencies>
     <dependency>
       <groupId>org.assertj</groupId>
@@ -16,12 +16,12 @@
     </dependency>
     <dependency>
       <groupId>com.crd.projectname</groupId>
-      <artifactId>trade-service-tests</artifactId>
+      <artifactId>deal-service-tests</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>com.crd.projectname</groupId>
-      <artifactId>trade-service-migratedb</artifactId>
+      <artifactId>deal-service-migratedb</artifactId>
     </dependency>
     <dependency>
       <groupId>org.projectlombok</groupId>
