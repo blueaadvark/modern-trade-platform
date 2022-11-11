@@ -6,10 +6,10 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Launch TradeServiceApplication with Dapr",
+            "name": "Launch DealServiceApplication with Dapr",
             "request": "launch",
-            "mainClass": "com.crd.service.tradeservice.TradeServiceApplication",
-            "projectName": "trade-service",
+            "mainClass": "com.crd.service.dealservice.DealServiceApplication",
+            "projectName": "deal-service",
             "env": {
                 "SPRING_PROFILES_ACTIVE": "local"
             },
@@ -18,10 +18,10 @@
         },
         {
             "type": "java",
-            "name": "Launch TradeServiceApplication",
+            "name": "Launch DealServiceApplication",
             "request": "launch",
-            "mainClass": "com.crd.service.tradeservice.TradeServiceApplication",
-            "projectName": "trade-service",
+            "mainClass": "com.crd.service.dealservice.DealServiceApplication",
+            "projectName": "deal-service",
             "env": {
                 "SPRING_PROFILES_ACTIVE": "local"
             },
