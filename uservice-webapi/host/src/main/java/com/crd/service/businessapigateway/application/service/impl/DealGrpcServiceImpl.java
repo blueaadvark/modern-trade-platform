@@ -2,9 +2,9 @@ package com.crd.service.businessapigateway.application.service.impl;
 
 import org.springframework.stereotype.Service;
 
-import com.crd.common.grpc.TradeResources.CreateOrderRequest;
-import com.crd.common.grpc.TradeServiceGrpc;
-import com.crd.common.grpc.TradeServiceGrpc.TradeServiceBlockingStub;
+import com.crd.common.grpc.DealServiceGrpc;
+import com.crd.common.grpc.DealResources.CreateOrderRequest;
+import com.crd.common.grpc.DealServiceGrpc.DealServiceBlockingStub;
 import com.crd.service.businessapigateway.application.config.Closeable;
 import com.crd.service.businessapigateway.application.model.Order;
 import com.crd.service.businessapigateway.application.service.DealGrpcService;
@@ -21,12 +21,12 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class DealGrpcServiceImpl implements DealGrpcService {
 
-  private final TradeServiceBlockingStub dealService;
+  private final DealServiceBlockingStub dealService;
 
   /** Uses given channel to communicate with backend. Shutdowns the channel properly. */
   public DealGrpcServiceImpl(Closeable.Of<ManagedChannel> dealManagedChannel) {
     var channel = dealManagedChannel.item();
-    this.dealService = TradeServiceGrpc.newBlockingStub(channel);
+    this.dealService = DealServiceGrpc.newBlockingStub(channel);
   }
 
   @Override
