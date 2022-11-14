@@ -23,8 +23,8 @@
 
     <modules>
         <module>api/client-java</module>
-        <!--module>libs-java</module -->
-        <module>libs-java/uservice-spring-parent</module>
+        <module>libs-java</module>
+        <!--module>libs-java/uservice-spring-parent</module -->
         <module>uservice-webapi</module>
         <module>uservice-calculation</module>
         <module>uservice-deal</module>

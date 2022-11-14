@@ -1,0 +1,37 @@
+pool:
+  name: Azure Pipelines
+  demands: maven
+
+#Your build pipeline references an undefined variable named ‘mvnSettings.secureFilePath’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
+
+steps:
+- task: SonarSource.sonarcloud.14d9cde6-c1da-4d55-aa01-2965cd301255.SonarCloudPrepare@1
+  displayName: 'Prepare analysis on SonarCloud'
+  inputs:
+    SonarCloud: 'Sonar Test'
+    organization: blueaadvark
+    scannerMode: Other
+
+- task: DownloadSecureFile@1
+  displayName: 'Download secure file'
+  name: mvnSettings
+  inputs:
+    secureFile: '0688ab68-a2cc-4d09-9942-161e3d378426'
+
+- task: Maven@4
+  displayName: 'Maven pom.xml'
+  inputs:
+    options: '-Dmaven.test.failure.ignore=true -Drevision=0.1.0-SNAPSHOT -s $(mvnSettings.secureFilePath)'
+    codeCoverageToolOption: JaCoCo
+    sonarQubeRunAnalysis: true
+    isJacocoCoverageReportXML: true
+    javaHomeOption: JDKVersion
+    jdkVersionOption: 1.17
+
+- task: SonarSource.sonarcloud.ce096e50-6155-4de8-8800-4221aaeed4a1.SonarCloudAnalyze@1
+  displayName: 'Run Code Analysis'
+  enabled: false
+
+- task: SonarSource.sonarcloud.38b27399-a642-40af-bb7d-9971f69712e8.SonarCloudPublish@1
+  displayName: 'Publish Quality Gate Result'
+
