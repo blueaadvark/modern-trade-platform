@@ -105,7 +105,8 @@ public class DealApiService extends DealServiceGrpc.DealServiceImplBase {
     log.info("Received a template list request");
     log.info(request.toString());
 
-    var dbResponse = templateRepository.getTemplateList(request.getProductType(), request.getCurrency(), request.getIndex()).stream().map(t -> t.getTemplate()).collect(Collectors.toList());
+    var dbResponse = templateRepository.getTemplateList(request.getProductType(), request.getCurrency(), request.getIndex())
+        .stream().map(t -> t.getTemplate()).collect(Collectors.toList());
     var templateResponse = InstrumentTemplateResponse.newBuilder().addAllTemplate(dbResponse).build();
 
     responseObserver.onNext(templateResponse);
