@@ -92,7 +92,8 @@ jobs:
         name: mvnSettings
         inputs:
           secureFile: '0688ab68-a2cc-4d09-9942-161e3d378426'
-         
+          extraProperties:
+            sona.projectKey=932308e2aea612ffd10a63b8a43573cf553e4c4b        
       - task: Maven@4
         displayName: 'µService test and build'
         inputs:
