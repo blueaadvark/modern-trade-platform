@@ -79,22 +79,6 @@ jobs:
           #  - disable log entries (a lot of entries) related to artifacts downloaded by maven
           options: -B --no-transfer-progress
           checkStyleRunAnalysis: true # We use checkstyle in coding, so let's use it with Maven as well
-          
-      - task: Maven@4
-        displayName: 'µService test and build'
-        inputs:
-          mavenOptions: $(MAVEN_OPTS)
-          mavenPomFile: 'uservice-deal/pom.xml'
-          goals: 'install'
-          javaHomeOption: JDKVersion
-          jdkVersionOption: 1.17
-          # options:
-          #  - disable log entries (a lot of entries) related to artifacts downloaded by maven
-          #  - use semversion for generated backend
-          options: -B --no-transfer-progress -DREVISION=$(SEMVERSION)
-          checkStyleRunAnalysis: true # We use checkstyle in coding, so let's use it with Maven as well
-          publishJUnitResults: true
-      
 
       - task: SonarSource.sonarcloud.14d9cde6-c1da-4d55-aa01-2965cd301255.SonarCloudPrepare@1
         displayName: 'Prepare analysis on SonarCloud'
@@ -108,16 +92,24 @@ jobs:
         name: mvnSettings
         inputs:
           secureFile: '0688ab68-a2cc-4d09-9942-161e3d378426'
-
+         
       - task: Maven@4
-        displayName: 'Maven pom.xml'
+        displayName: 'µService test and build'
         inputs:
-          options: '-Dmaven.test.failure.ignore=true -Drevision=0.1.0-SNAPSHOT -s $(mvnSettings.secureFilePath)'
+          mavenOptions: $(MAVEN_OPTS)
+          mavenPomFile: 'uservice-deal/pom.xml'
+          goals: 'install'
+          javaHomeOption: JDKVersion
+          jdkVersionOption: 1.17
           codeCoverageToolOption: JaCoCo
           sonarQubeRunAnalysis: true
           isJacocoCoverageReportXML: true
-          javaHomeOption: JDKVersion
-          jdkVersionOption: 1.17
+          # options:
+          #  - disable log entries (a lot of entries) related to artifacts downloaded by maven
+          #  - use semversion for generated backend
+          options: -B --no-transfer-progress -DREVISION=$(SEMVERSION) -s $(mvnSettings.secureFilePath)
+          checkStyleRunAnalysis: true # We use checkstyle in coding, so let's use it with Maven as well
+          publishJUnitResults: true
 
       - task: Maven@4
         displayName: Build µService docker image
