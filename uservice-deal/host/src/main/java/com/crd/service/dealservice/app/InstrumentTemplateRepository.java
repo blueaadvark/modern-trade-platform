@@ -1,5 +1,6 @@
 package com.crd.service.dealservice.app;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,4 +16,7 @@ public interface InstrumentTemplateRepository extends JpaRepository<InstrumentTe
   
   @Query("select t from #{#entityName} t where t.productType = :productType and t.currency = :currency and t.index = :index")
   InstrumentTemplateDbo getJsonTemplate(@Param("productType") String productType, @Param("currency") String currency, @Param("index") String index);
+
+  @Query("select t from #{#entityName} t where t.productType like :productType% and t.currency like :currency% and t.index like :index%")
+  List<InstrumentTemplateDbo> getTemplateList(@Param("productType") String productType, @Param("currency") String currency, @Param("index") String index);
 }

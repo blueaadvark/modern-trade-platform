@@ -3,6 +3,7 @@ option java_multiple_files = true;
 package com.crd.common.grpc;
 
 import "deal_resources.proto";
+import "instrument_template_resources.proto";
 
 message Trade {
     int64 tradeId = 1;
@@ -15,14 +16,14 @@ message Trade {
 // The Deal Service definition.
 service DealService {
     // Get trade By Trade ID
-    rpc getTrade (Trade) returns (Trade) {
-    }
+    rpc getTrade(Trade) returns (Trade) {}
 
     // Get Version of the Trade Service
-    rpc getVersion(GetVersionRequest) returns (GetVersionResponse) {
-    }
+    rpc getVersion(GetVersionRequest) returns (GetVersionResponse) {}
 
     // Post a new order to the trade service
-    rpc postNewOrder(CreateOrderRequest) returns (CreateOrderResponse) {
-    }
+    rpc postNewOrder(CreateOrderRequest) returns (CreateOrderResponse) {}
+
+    // Get the templates list based on inputs
+    rpc getInstrumentTemplates(InstrumentTemplateRequest) returns (InstrumentTemplateResponse) {}
 }

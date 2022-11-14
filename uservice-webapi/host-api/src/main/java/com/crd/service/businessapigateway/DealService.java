@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import com.crd.service.businessapigateway.dto.ApiResponse;
 import com.crd.service.businessapigateway.dto.OrderDto;
 import com.crd.service.businessapigateway.dto.DealResponse;
+import com.crd.service.businessapigateway.dto.InstrumentTemplateRequestDto;
+import com.crd.service.businessapigateway.dto.InstrumentTemplateResponse;
 
 /**
  * API Interface for the trade service controller.
@@ -20,4 +22,7 @@ public interface DealService {
 
   @RequestMapping(method = RequestMethod.POST, value = "/order")
   ResponseEntity<DealResponse> createOrder(@RequestHeader(value = "trader") String trader, @RequestBody OrderDto order);
+
+  @RequestMapping(method = RequestMethod.POST, value = "/templates")
+  ResponseEntity<InstrumentTemplateResponse> getTemplates(@RequestBody InstrumentTemplateRequestDto templateRequest);
 }

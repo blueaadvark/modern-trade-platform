@@ -2,6 +2,8 @@ package com.crd.service.businessapigateway.application.service;
 
 import com.crd.service.businessapigateway.application.model.Order;
 import com.crd.service.businessapigateway.dto.DealResponse;
+import com.crd.service.businessapigateway.dto.InstrumentTemplateRequestDto;
+import com.crd.service.businessapigateway.dto.InstrumentTemplateResponse;
 import com.crd.service.businessapigateway.dto.OrderDto;
 
 /**
@@ -13,4 +15,6 @@ public interface DealGrpcService {
   DealResponse createNewOrder(OrderDto order);
 
   Order getDeal(String tradeId);
+
+  InstrumentTemplateResponse getTemplates(InstrumentTemplateRequestDto templateRequest);
 }

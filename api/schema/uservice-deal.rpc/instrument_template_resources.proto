@@ -1,0 +1,12 @@
+syntax = "proto3";
+package com.crd.common.grpc;
+
+message InstrumentTemplateRequest {
+    string productType = 1;
+    string currency = 2;
+    string index = 3;
+  }
+  
+  message InstrumentTemplateResponse {
+    repeated string template = 1;
+  }
