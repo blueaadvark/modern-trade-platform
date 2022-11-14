@@ -72,7 +72,7 @@ public class DealApiService extends DealServiceGrpc.DealServiceImplBase {
     // Get the Template for the trade from the DB SWAPIRS:USD:LIBOR:6M
     var templateName = String.format("%s:%s:%s:%s", order.getType(), order.getCurrency(), order.getIndex(), order.getMaturity());
     log.info("Trying to get template from database for %s", templateName);
-    var template = templateRepository.getTemplateByName(templateName).getTemplate();
+    var template = templateRepository.getJsonTemplate(order.getType(), order.getCurrency(), order.getIndex()).getTemplate();
 
     // Populate the template with the details from the order
     StringWriter writer = new StringWriter();

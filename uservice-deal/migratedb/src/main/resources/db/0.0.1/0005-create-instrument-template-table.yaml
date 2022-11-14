@@ -19,8 +19,18 @@ databaseChangeLog:
                 constraints:
                   nullable: false
             - column:
-                name: NAME
-                type: VARCHAR(30)
+                name: PRODUCT_TYPE
+                type: VARCHAR(20)
+                constraints:
+                  nullable: false
+            - column:
+                name: CURRENCY
+                type: VARCHAR(3)
+                constraints:
+                  nullable: false
+            - column:
+                name: INDEX
+                type: VARCHAR(20)
                 constraints:
                   nullable: false
             - column:
