@@ -50,4 +50,24 @@
 		</plugins>
 	</build>
 
+  <repositories>
+      <repository>
+        <id>Charles-River</id>
+        <url>https://pkgs.dev.azure.com/fd-charles-river/charles_river/_packaging/Charles-River/maven/v1</url>
+        <releases>
+          <enabled>true</enabled>
+        </releases>
+        <snapshots>
+          <enabled>true</enabled>
+        </snapshots>
+      </repository>
+  </repositories>
+
+  <distributionManagement>
+    <repository>
+      <id>Charles-River</id>
+      <url>https://pkgs.dev.azure.com/fd-charles-river/charles_river/_packaging/Charles-River/maven/v1</url>
+    </repository>
+  </distributionManagement>
+
 </project>
