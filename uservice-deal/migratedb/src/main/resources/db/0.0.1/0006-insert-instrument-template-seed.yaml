@@ -7,16 +7,110 @@ databaseChangeLog:
             columns:
             - column:
                 name: ENTITY_ID
+                value: 663e17da-1b9b-491b-9497-9ff378c57520
+            - column:
+                name: ENTITY_VERSION
+                value: 1
+            - column:
+                name: PRODUCT_TYPE
+                value: SWAPIRS
+            - column:
+                name: CURRENCY
+                value: USD
+            - column:
+                name: INDEX
+                value: LIB1M
+            - column:
+                name: TEMPLATE
+                value: '{"Instrument":{"ProductType":"InterestRate:IRSwap:FixedFloat","ProductSubType":"Vanilla","FixedLeg":{"LegId":"","Direction":"Pay","Notional":"${notional}","Currency":"USD","Fixed Rate":"1.2000","DayCount Fraction":"30/360","Effective Date":{"UnAdjusted Date":"YYYY-MM-DD","Date Adjustments":{"Business Day Convention":"Modified Following","Business Centers":["GBLO","USNY"]}},"Maturity Date":{"UnAdjusted Date":"${maturity}","Date Adjustments":{"Business Day Convention":"Modified Following","Business Centers":["GBLO","USNY"]}},"Calculation Period":{"Frequency":"1M","Roll Convention":"20","Date Adjustments":{"Business Day Convention":"Modified Following","Business Centers":["GBLO","USNY"]}},"Payment Dates":{"Frequency":"1M","Date Adjustments":{"Business Day Convention":"Modified Following","Business Centers":["GBLO","USNY"]},"PayRelativeTo":"PeriodEndDate"}},"FloatingLeg":{"LegId":"","Direction":"Receive","Notional":"${notional}","Currency":"USD","DayCount Fraction":"ACT/360","Effective Date":{"UnAdjusted Date":"YYYY-MM-DD","Date Adjustments":{"Business Day Convention":"Modified Following","Business Centers":["GBLO","USNY"]}},"Maturity Date":{"UnAdjusted Date":"${maturity}","Date Adjustments":{"Business Day Convention":"Modified Following","Business Centers":["GBLO","USNY"]}},"Calculation Period":{"Frequency":"1M","Roll Convention":"20","Date Adjustments":{"Business Day Convention":"Modified Following","Business Centers":["GBLO","USNY"]}},"Payment":{"RelativeTo":"PeriodEndDate","Frequency":"1M","Date Adjustments":{"Business Day Convention":"Modified Following","Business Centers":["GBLO","USNY"]}},"Reset":{"RelativeTo":"PeriodStartDate","Frequency":"1M","Date Adjustments":{"Business Day Convention":"Modified Following","Business Centers":["GBLO","USNY"]},"Fixing":{"Lag":"-2D","Lag in Business Days":"TRUE","Date Adjustments":{"Business Day Convention":"Modified Following","Business Centers":["GBLO","USNY"]}}},"Floating Rate":{"Index":"USD-LIBOR-BBA","Tenor":"1M"},"Spread":"0.00023"}},"CustomAttributes":[{"Special Attribute 1":"value1"},{"Special Attribute 2":"value2"}]}'
+            tableName: TMPL_INSTRUMENT
+        - insert:
+            columns:
+            - column:
+                name: ENTITY_ID
                 value: 663e17da-1a9a-491b-9497-9ff378c57520
             - column:
                 name: ENTITY_VERSION
                 value: 1
             - column:
-                name: NAME
-                value: SWAPIRS:USD:LIBOR:6M
+                name: PRODUCT_TYPE
+                value: SWAPIRS
+            - column:
+                name: CURRENCY
+                value: USD
+            - column:
+                name: INDEX
+                value: LIB3M
             - column:
                 name: TEMPLATE
-                value: '{"Instrument":{"ProductType":"InterestRate:IRSwap:FixedFloat","ProductSubType":"Vanilla","FixedLeg":{"LegId":"","Direction":"Pay","Notional":"${notional}","Currency":"USD","Fixed Rate":"1.2000","DayCount Fraction":"30/360","Effective Date":{"UnAdjusted Date":"YYYY-MM-DD","Date Adjustments":{"Business Day Convention":"Modified Following","Business Centers":["GBLO","USNY"]}},"Maturity Date":{"UnAdjusted Date":"YYYY-MM-DD","Date Adjustments":{"Business Day Convention":"Modified Following","Business Centers":["GBLO","USNY"]}},"Calculation Period":{"Frequency":"6M","Roll Convention":"20","Date Adjustments":{"Business Day Convention":"Modified Following","Business Centers":["GBLO","USNY"]}},"Payment Dates":{"Frequency":"6M","Date Adjustments":{"Business Day Convention":"Modified Following","Business Centers":["GBLO","USNY"]},"PayRelativeTo":"PeriodEndDate"}},"FloatingLeg":{"LegId":"","Direction":"Receive","Notional":"${notional}","Currency":"USD","DayCount Fraction":"ACT/360","Effective Date":{"UnAdjusted Date":"YYYY-MM-DD","Date Adjustments":{"Business Day Convention":"Modified Following","Business Centers":["GBLO","USNY"]}},"Maturity Date":{"UnAdjusted Date":"YYYY-MM-DD","Date Adjustments":{"Business Day Convention":"Modified Following","Business Centers":["GBLO","USNY"]}},"Calculation Period":{"Frequency":"6M","Roll Convention":"20","Date Adjustments":{"Business Day Convention":"Modified Following","Business Centers":["GBLO","USNY"]}},"Payment":{"RelativeTo":"PeriodEndDate","Frequency":"6M","Date Adjustments":{"Business Day Convention":"Modified Following","Business Centers":["GBLO","USNY"]}},"Reset":{"RelativeTo":"PeriodStartDate","Frequency":"6M","Date Adjustments":{"Business Day Convention":"Modified Following","Business Centers":["GBLO","USNY"]},"Fixing":{"Lag":"-2D","Lag in Business Days":"TRUE","Date Adjustments":{"Business Day Convention":"Modified Following","Business Centers":["GBLO","USNY"]}}},"Floating Rate":{"Index":"USD-LIBOR-BBA","Tenor":"6M"},"Spread":"0.00023"}},"CustomAttributes":[{"Special Attribute 1":"value1"},{"Special Attribute 2":"value2"}]}'
+                value: '{"Instrument":{"ProductType":"InterestRate:IRSwap:FixedFloat","ProductSubType":"Vanilla","FixedLeg":{"LegId":"","Direction":"Pay","Notional":"${notional}","Currency":"USD","Fixed Rate":"1.2000","DayCount Fraction":"30/360","Effective Date":{"UnAdjusted Date":"YYYY-MM-DD","Date Adjustments":{"Business Day Convention":"Modified Following","Business Centers":["GBLO","USNY"]}},"Maturity Date":{"UnAdjusted Date":"${maturity}","Date Adjustments":{"Business Day Convention":"Modified Following","Business Centers":["GBLO","USNY"]}},"Calculation Period":{"Frequency":"3M","Roll Convention":"20","Date Adjustments":{"Business Day Convention":"Modified Following","Business Centers":["GBLO","USNY"]}},"Payment Dates":{"Frequency":"3M","Date Adjustments":{"Business Day Convention":"Modified Following","Business Centers":["GBLO","USNY"]},"PayRelativeTo":"PeriodEndDate"}},"FloatingLeg":{"LegId":"","Direction":"Receive","Notional":"${notional}","Currency":"USD","DayCount Fraction":"ACT/360","Effective Date":{"UnAdjusted Date":"YYYY-MM-DD","Date Adjustments":{"Business Day Convention":"Modified Following","Business Centers":["GBLO","USNY"]}},"Maturity Date":{"UnAdjusted Date":"${maturity}","Date Adjustments":{"Business Day Convention":"Modified Following","Business Centers":["GBLO","USNY"]}},"Calculation Period":{"Frequency":"3M","Roll Convention":"20","Date Adjustments":{"Business Day Convention":"Modified Following","Business Centers":["GBLO","USNY"]}},"Payment":{"RelativeTo":"PeriodEndDate","Frequency":"3M","Date Adjustments":{"Business Day Convention":"Modified Following","Business Centers":["GBLO","USNY"]}},"Reset":{"RelativeTo":"PeriodStartDate","Frequency":"3M","Date Adjustments":{"Business Day Convention":"Modified Following","Business Centers":["GBLO","USNY"]},"Fixing":{"Lag":"-2D","Lag in Business Days":"TRUE","Date Adjustments":{"Business Day Convention":"Modified Following","Business Centers":["GBLO","USNY"]}}},"Floating Rate":{"Index":"USD-LIBOR-BBA","Tenor":"3M"},"Spread":"0.00023"}},"CustomAttributes":[{"Special Attribute 1":"value1"},{"Special Attribute 2":"value2"}]}'
             dbms: 'postgresql'
-            schemaName: USERVICE_DEAL
             tableName: TMPL_INSTRUMENT
+        - insert:
+            columns:
+            - column:
+                name: ENTITY_ID
+                value: 673e17da-1a9a-491b-9497-9fd378c58520
+            - column:
+                name: ENTITY_VERSION
+                value: 1
+            - column:
+                name: PRODUCT_TYPE
+                value: SWAPIRS
+            - column:
+                name: CURRENCY
+                value: USD
+            - column:
+                name: INDEX
+                value: LIB6M
+            - column:
+                name: TEMPLATE
+                value: '{"Instrument":{"ProductType":"InterestRate:IRSwap:FixedFloat","ProductSubType":"Vanilla","FixedLeg":{"LegId":"","Direction":"Pay","Notional":"${notional}","Currency":"USD","Fixed Rate":"1.2000","DayCount Fraction":"30/360","Effective Date":{"UnAdjusted Date":"YYYY-MM-DD","Date Adjustments":{"Business Day Convention":"Modified Following","Business Centers":["GBLO","USNY"]}},"Maturity Date":{"UnAdjusted Date":"${maturity}","Date Adjustments":{"Business Day Convention":"Modified Following","Business Centers":["GBLO","USNY"]}},"Calculation Period":{"Frequency":"6M","Roll Convention":"20","Date Adjustments":{"Business Day Convention":"Modified Following","Business Centers":["GBLO","USNY"]}},"Payment Dates":{"Frequency":"6M","Date Adjustments":{"Business Day Convention":"Modified Following","Business Centers":["GBLO","USNY"]},"PayRelativeTo":"PeriodEndDate"}},"FloatingLeg":{"LegId":"","Direction":"Receive","Notional":"${notional}","Currency":"USD","DayCount Fraction":"ACT/360","Effective Date":{"UnAdjusted Date":"YYYY-MM-DD","Date Adjustments":{"Business Day Convention":"Modified Following","Business Centers":["GBLO","USNY"]}},"Maturity Date":{"UnAdjusted Date":"${maturity}","Date Adjustments":{"Business Day Convention":"Modified Following","Business Centers":["GBLO","USNY"]}},"Calculation Period":{"Frequency":"6M","Roll Convention":"20","Date Adjustments":{"Business Day Convention":"Modified Following","Business Centers":["GBLO","USNY"]}},"Payment":{"RelativeTo":"PeriodEndDate","Frequency":"6M","Date Adjustments":{"Business Day Convention":"Modified Following","Business Centers":["GBLO","USNY"]}},"Reset":{"RelativeTo":"PeriodStartDate","Frequency":"6M","Date Adjustments":{"Business Day Convention":"Modified Following","Business Centers":["GBLO","USNY"]},"Fixing":{"Lag":"-2D","Lag in Business Days":"TRUE","Date Adjustments":{"Business Day Convention":"Modified Following","Business Centers":["GBLO","USNY"]}}},"Floating Rate":{"Index":"USD-LIBOR-BBA","Tenor":"6M"},"Spread":"0.00023"}},"CustomAttributes":[{"Special Attribute 1":"value1"},{"Special Attribute 2":"value2"}]}'
+            dbms: 'postgresql'
+            tableName: TMPL_INSTRUMENT
+        - insert:
+            columns:
+            - column:
+                name: ENTITY_ID
+                value: 873e17da-2a9a-491b-3456-9fd378c58520
+            - column:
+                name: ENTITY_VERSION
+                value: 1
+            - column:
+                name: PRODUCT_TYPE
+                value: SWAPOIS
+            - column:
+                name: CURRENCY
+                value: USD
+            - column:
+                name: INDEX
+                value: LIB6M
+            - column:
+                name: TEMPLATE
+                value: '{"Instrument":{"ProductType":"InterestRate:IRSwap:FixedFloat","ProductSubType":"Vanilla","FixedLeg":{"LegId":"","Direction":"Pay","Notional":"${notional}","Currency":"USD","Fixed Rate":"1.2000","DayCount Fraction":"30/360","Effective Date":{"UnAdjusted Date":"YYYY-MM-DD","Date Adjustments":{"Business Day Convention":"Modified Following","Business Centers":["GBLO","USNY"]}},"Maturity Date":{"UnAdjusted Date":"${maturity}","Date Adjustments":{"Business Day Convention":"Modified Following","Business Centers":["GBLO","USNY"]}},"Calculation Period":{"Frequency":"6M","Roll Convention":"20","Date Adjustments":{"Business Day Convention":"Modified Following","Business Centers":["GBLO","USNY"]}},"Payment Dates":{"Frequency":"6M","Date Adjustments":{"Business Day Convention":"Modified Following","Business Centers":["GBLO","USNY"]},"PayRelativeTo":"PeriodEndDate"}},"FloatingLeg":{"LegId":"","Direction":"Receive","Notional":"${notional}","Currency":"USD","DayCount Fraction":"ACT/360","Effective Date":{"UnAdjusted Date":"YYYY-MM-DD","Date Adjustments":{"Business Day Convention":"Modified Following","Business Centers":["GBLO","USNY"]}},"Maturity Date":{"UnAdjusted Date":"${maturity}","Date Adjustments":{"Business Day Convention":"Modified Following","Business Centers":["GBLO","USNY"]}},"Calculation Period":{"Frequency":"6M","Roll Convention":"20","Date Adjustments":{"Business Day Convention":"Modified Following","Business Centers":["GBLO","USNY"]}},"Payment":{"RelativeTo":"PeriodEndDate","Frequency":"6M","Date Adjustments":{"Business Day Convention":"Modified Following","Business Centers":["GBLO","USNY"]}},"Reset":{"RelativeTo":"PeriodStartDate","Frequency":"6M","Date Adjustments":{"Business Day Convention":"Modified Following","Business Centers":["GBLO","USNY"]},"Fixing":{"Lag":"-2D","Lag in Business Days":"TRUE","Date Adjustments":{"Business Day Convention":"Modified Following","Business Centers":["GBLO","USNY"]}}},"Floating Rate":{"Index":"USD-LIBOR-BBA","Tenor":"6M"},"Spread":"0.00023"}},"CustomAttributes":[{"Special Attribute 1":"value1"},{"Special Attribute 2":"value2"}]}'
+            dbms: 'postgresql'
+            tableName: TMPL_INSTRUMENT
+        - insert:
+            columns:
+            - column:
+                name: ENTITY_ID
+                value: 973e17da-3a9a-491b-1234-9fd378c58520
+            - column:
+                name: ENTITY_VERSION
+                value: 1
+            - column:
+                name: PRODUCT_TYPE
+                value: SWAPIRS
+            - column:
+                name: CURRENCY
+                value: EUR
+            - column:
+                name: INDEX
+                value: EURIB6M
+            - column:
+                name: TEMPLATE
+                value: '{"Instrument":{"ProductType":"InterestRate:IRSwap:FixedFloat","ProductSubType":"Vanilla","FixedLeg":{"LegId":"","Direction":"Pay","Notional":"${notional}","Currency":"EUR","Fixed Rate":"1.2000","DayCount Fraction":"30/360","Effective Date":{"UnAdjusted Date":"YYYY-MM-DD","Date Adjustments":{"Business Day Convention":"Modified Following","Business Centers":["GBLO","USNY"]}},"Maturity Date":{"UnAdjusted Date":"${maturity}","Date Adjustments":{"Business Day Convention":"Modified Following","Business Centers":["GBLO","USNY"]}},"Calculation Period":{"Frequency":"6M","Roll Convention":"20","Date Adjustments":{"Business Day Convention":"Modified Following","Business Centers":["GBLO","USNY"]}},"Payment Dates":{"Frequency":"6M","Date Adjustments":{"Business Day Convention":"Modified Following","Business Centers":["GBLO","USNY"]},"PayRelativeTo":"PeriodEndDate"}},"FloatingLeg":{"LegId":"","Direction":"Receive","Notional":"${notional}","Currency":"EUR","DayCount Fraction":"ACT/360","Effective Date":{"UnAdjusted Date":"YYYY-MM-DD","Date Adjustments":{"Business Day Convention":"Modified Following","Business Centers":["GBLO","USNY"]}},"Maturity Date":{"UnAdjusted Date":"${maturity}","Date Adjustments":{"Business Day Convention":"Modified Following","Business Centers":["GBLO","USNY"]}},"Calculation Period":{"Frequency":"6M","Roll Convention":"20","Date Adjustments":{"Business Day Convention":"Modified Following","Business Centers":["GBLO","USNY"]}},"Payment":{"RelativeTo":"PeriodEndDate","Frequency":"6M","Date Adjustments":{"Business Day Convention":"Modified Following","Business Centers":["GBLO","USNY"]}},"Reset":{"RelativeTo":"PeriodStartDate","Frequency":"6M","Date Adjustments":{"Business Day Convention":"Modified Following","Business Centers":["GBLO","USNY"]},"Fixing":{"Lag":"-2D","Lag in Business Days":"TRUE","Date Adjustments":{"Business Day Convention":"Modified Following","Business Centers":["GBLO","USNY"]}}},"Floating Rate":{"Index":"EUR-EURIBOR-BBA","Tenor":"6M"},"Spread":"0.00023"}},"CustomAttributes":[{"Special Attribute 1":"value1"},{"Special Attribute 2":"value2"}]}'
+            dbms: 'postgresql'
+            tableName: TMPL_INSTRUMENT
+        - rollback:
+            DELETE FROM TMPL_INSTRUMENT WHERE ENTITY_ID IN ('663e17da-1b9b-491b-9497-9ff378c57520', '663e17da-1a9a-491b-9497-9ff378c57520', '673e17da-1a9a-491b-9497-9fd378c58520', '873e17da-2a9a-491b-3456-9fd378c58520', '973e17da-3a9a-491b-1234-9fd378c58520')

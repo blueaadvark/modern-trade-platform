@@ -31,8 +31,14 @@ public class InstrumentTemplateDbo {
   @EqualsAndHashCode.Include
   private Long entityVersion;
 
-  @Column(name = "NAME")
-  private String name;
+  @Column(name = "PRODUCT_TYPE")
+  private String productType;
+
+  @Column(name = "CURRENCY")
+  private String currency;
+
+  @Column(name = "INDEX")
+  private String index;
 
   @Column(name = "TEMPLATE")
   private String template;
