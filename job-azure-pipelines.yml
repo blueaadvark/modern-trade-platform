@@ -108,7 +108,8 @@ jobs:
           # options:
           #  - disable log entries (a lot of entries) related to artifacts downloaded by maven
           #  - use semversion for generated backend
-          options: -B --no-transfer-progress -DREVISION=$(SEMVERSION) -s $(mvnSettings.secureFilePath)
+          options: -B --no-transfer-progress -DREVISION=$(SEMVERSION)
+          # -s $(mvnSettings.secureFilePath)
           checkStyleRunAnalysis: true # We use checkstyle in coding, so let's use it with Maven as well
           publishJUnitResults: true
 
