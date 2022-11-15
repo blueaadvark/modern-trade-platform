@@ -9,6 +9,8 @@ import com.crd.service.businessapigateway.DealService;
 import com.crd.service.businessapigateway.dto.ApiResponse;
 import com.crd.service.businessapigateway.dto.OrderDto;
 import com.crd.service.businessapigateway.dto.DealResponse;
+import com.crd.service.businessapigateway.dto.InstrumentTemplateRequestDto;
+import com.crd.service.businessapigateway.dto.InstrumentTemplateResponse;
 import com.crd.service.businessapigateway.application.service.DealGrpcService;
 
 import lombok.RequiredArgsConstructor;
@@ -41,5 +43,11 @@ class DealServiceController implements DealService {
     order.setTrader(trader);
     var orderResponse = dealGrpcService.createNewOrder(order);
     return new ResponseEntity<>(orderResponse, HttpStatus.CREATED);
+  }
+
+  @Override
+  public ResponseEntity<InstrumentTemplateResponse> getTemplates(InstrumentTemplateRequestDto templateRequest) {
+    var templateResponse = dealGrpcService.getTemplates(templateRequest);
+    return new ResponseEntity<>(templateResponse, HttpStatus.OK);
   }
 }

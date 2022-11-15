@@ -3,6 +3,7 @@ package com.crd.service.dealservice.api;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 
@@ -12,6 +13,8 @@ import com.crd.common.grpc.DealResources.CreateOrderRequest;
 import com.crd.common.grpc.DealResources.CreateOrderResponse;
 import com.crd.common.grpc.DealResources.GetVersionRequest;
 import com.crd.common.grpc.DealResources.GetVersionResponse;
+import com.crd.common.grpc.InstrumentTemplateResources.InstrumentTemplateRequest;
+import com.crd.common.grpc.InstrumentTemplateResources.InstrumentTemplateResponse;
 import com.crd.service.dealservice.app.InstrumentTemplateRepository;
 import com.crd.service.dealservice.app.OrderDbo;
 import com.crd.service.dealservice.app.OrderRepository;
@@ -32,7 +35,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public class DealApiService extends DealServiceGrpc.DealServiceImplBase {
 
-  private final DealService tradeService;
+  private final DealService dealService;
   private final OrderRepository orderRepository;
   private final InstrumentTemplateRepository templateRepository;
 
@@ -41,7 +44,7 @@ public class DealApiService extends DealServiceGrpc.DealServiceImplBase {
   public void getVersion(GetVersionRequest request, StreamObserver<GetVersionResponse> responseObserver) {
     log.info("Calling Deal Service Version Check");
 
-    tradeService.testMethods();
+    dealService.testMethods();
 
     var versionResponse = GetVersionResponse.newBuilder().setVersion("CRD Deal Service 1.0").build();
 
@@ -94,6 +97,19 @@ public class DealApiService extends DealServiceGrpc.DealServiceImplBase {
     var orderResponse = CreateOrderResponse.newBuilder().setTradeId(template.toString()).build();
 
     responseObserver.onNext(orderResponse);
+    responseObserver.onCompleted();
+  }
+
+  @Override
+  public void getInstrumentTemplates(InstrumentTemplateRequest request, StreamObserver<InstrumentTemplateResponse> responseObserver) {
+    log.info("Received a template list request");
+    log.info(request.toString());
+
+    var dbResponse = templateRepository.getTemplateList(request.getProductType(), request.getCurrency(), request.getIndex())
+        .stream().map(t -> t.getTemplate()).collect(Collectors.toList());
+    var templateResponse = InstrumentTemplateResponse.newBuilder().addAllTemplate(dbResponse).build();
+
+    responseObserver.onNext(templateResponse);
     responseObserver.onCompleted();
   }
 }
