@@ -136,7 +136,7 @@ jobs:
           javaHomeOption: JDKVersion
           jdkVersionOption: 1.17
           #codeCoverageToolOption: JaCoCo
-          #sonarQubeRunAnalysis: true
+          sonarQubeRunAnalysis: true
           #isJacocoCoverageReportXML: true
           # options:
           #  - disable log entries (a lot of entries) related to artifacts downloaded by maven
