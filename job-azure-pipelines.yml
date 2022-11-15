@@ -132,9 +132,9 @@ jobs:
           goals: 'install'
           javaHomeOption: JDKVersion
           jdkVersionOption: 1.17
-          codeCoverageToolOption: JaCoCo
-          sonarQubeRunAnalysis: true
-          isJacocoCoverageReportXML: true
+          #codeCoverageToolOption: JaCoCo
+          #sonarQubeRunAnalysis: true
+          #isJacocoCoverageReportXML: true
           # options:
           #  - disable log entries (a lot of entries) related to artifacts downloaded by maven
           #  - use semversion for generated backend
