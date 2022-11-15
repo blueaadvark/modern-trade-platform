@@ -1,13 +1,5 @@
 <project>
     <modelVersion>4.0.0</modelVersion>
-
-    <!--parent>
-      <groupId>com.crd.projectname</groupId>
-      <artifactId>spring-parent</artifactId>
-      <version>0.1.0-SNAPSHOT</version>
-      <relativePath />
-    </parent -->
-
     <groupId>com.crd.projectname</groupId>
     <artifactId>modern-trade</artifactId>
     <packaging>pom</packaging>
