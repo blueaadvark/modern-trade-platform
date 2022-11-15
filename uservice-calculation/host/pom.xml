@@ -9,6 +9,11 @@
 	<artifactId>calculation-service-host</artifactId>
 	<packaging>jar</packaging>
 	<description>Calculation Service</description>
+
+  <properties>
+    <spring.boot.mainclass>com.crd.service.calculation-service-host.CalculationServiceApplication</spring.boot.mainclass>
+  </properties>
+
 	<dependencies>
 
 		<dependency>
@@ -57,12 +62,24 @@
 		</dependency>
 	</dependencies>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
+  <build>
+    <plugins>
+      
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+          <fork>true</fork>
+          <skip>false</skip>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>repackage</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>       
 		</plugins>
 	</build>
 

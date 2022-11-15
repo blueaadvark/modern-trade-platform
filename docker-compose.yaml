@@ -48,4 +48,22 @@ services:
         condition: service_started
       local-stack-java-sdk-build:
         condition: service_completed_successfully
+
+  uservice-calculation:
+    build:
+      context: uservice-calculation/
+      dockerfile: ./host/Dockerfile.local
+    volumes:
+      # Map local maven repo to speed up build by avoiding downloading maven dependencies each time to new docker image
+      - ~/.m2/:/.m2
+      # Map local source files
+      - ./uservice-calculation/:/uservice-calculation-src
+    ports:
+      - 18220:18220
+      - 18221:18221
+    depends_on:
+      postgres:
+        condition: service_started
+      local-stack-java-sdk-build:
+        condition: service_completed_successfully      
   

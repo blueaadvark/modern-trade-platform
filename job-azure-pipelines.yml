@@ -22,6 +22,7 @@ trigger:
       - /uservice-deal/
       - /api/
       - /libs-java/
+      - /uservice-webapi/
 
 pr:
   branches:
@@ -33,6 +34,7 @@ pr:
       - /uservice-deal/
       - /api/
       - /libs-java/
+      - /uservice-webapi/
 
 jobs:
   - job: CICD
@@ -54,32 +56,6 @@ jobs:
           echo "##vso[task.setvariable variable=SEMVERSION]$(head -1 uservice-deal/.semversion)"
         displayName: Use version from local .semversion file
 
-      - task: Maven@4
-        displayName: 'API libs build'
-        inputs:
-          mavenOptions: $(MAVEN_OPTS)
-          mavenPomFile: 'api/client-java/pom.xml'
-          goals: 'install'
-          javaHomeOption: JDKVersion
-          jdkVersionOption: 1.17
-          # options:
-          #  - disable log entries (a lot of entries) related to artifacts downloaded by maven
-          options: -B --no-transfer-progress
-          checkStyleRunAnalysis: true # We use checkstyle in coding, so let's use it with Maven as well
-
-      - task: Maven@4
-        displayName: 'Shared libs build'
-        inputs:
-          mavenOptions: $(MAVEN_OPTS)
-          mavenPomFile: 'libs-java/pom.xml'
-          goals: 'install'
-          javaHomeOption: JDKVersion
-          jdkVersionOption: 1.17
-          # options:
-          #  - disable log entries (a lot of entries) related to artifacts downloaded by maven
-          options: -B --no-transfer-progress
-          checkStyleRunAnalysis: true # We use checkstyle in coding, so let's use it with Maven as well
-
       - task: SonarSource.sonarcloud.14d9cde6-c1da-4d55-aa01-2965cd301255.SonarCloudPrepare@1
         displayName: 'Prepare analysis on SonarCloud'
         inputs:
@@ -95,9 +71,42 @@ jobs:
         name: mvnSettings
         inputs:
           secureFile: '0688ab68-a2cc-4d09-9942-161e3d378426'
+
+      - task: Maven@4
+        displayName: 'API libs build and test'
+        inputs:
+          mavenOptions: $(MAVEN_OPTS)
+          mavenPomFile: 'api/client-java/pom.xml'
+          goals: 'install'
+          javaHomeOption: JDKVersion
+          jdkVersionOption: 1.17
+          codeCoverageToolOption: JaCoCo
+          sonarQubeRunAnalysis: true
+          isJacocoCoverageReportXML: true
+          # options:
+          #  - disable log entries (a lot of entries) related to artifacts downloaded by maven
+          #  - use settings.xml stored in Azure secure file areas
+          options: -B --no-transfer-progress -s $(mvnSettings.secureFilePath)
+          checkStyleRunAnalysis: true # We use checkstyle in coding, so let's use it with Maven as well
+
+      - task: Maven@4
+        displayName: 'Shared libs build and test'
+        inputs:
+          mavenOptions: $(MAVEN_OPTS)
+          mavenPomFile: 'libs-java/pom.xml'
+          goals: 'install'
+          javaHomeOption: JDKVersion
+          jdkVersionOption: 1.17
+          # options:
+          #  - disable log entries (a lot of entries) related to artifacts downloaded by maven
+          #  - use settings.xml stored in Azure secure file areas
+          options: -B --no-transfer-progress -s $(mvnSettings.secureFilePath)
+          checkStyleRunAnalysis: true # We use checkstyle in coding, so let's use it with Maven as well
+
+
                  
       - task: Maven@4
-        displayName: 'µService test and build'
+        displayName: 'µService Deal test and build'
         inputs:
           mavenOptions: $(MAVEN_OPTS)
           mavenPomFile: 'uservice-deal/pom.xml'
@@ -110,12 +119,32 @@ jobs:
           # options:
           #  - disable log entries (a lot of entries) related to artifacts downloaded by maven
           #  - use semversion for generated backend
+          #  - use settings.xml stored in Azure secure file areas
           options: -B --no-transfer-progress -DREVISION=$(SEMVERSION) -s $(mvnSettings.secureFilePath)
           checkStyleRunAnalysis: true # We use checkstyle in coding, so let's use it with Maven as well
           publishJUnitResults: true
 
       - task: Maven@4
-        displayName: Build µService docker image
+        displayName: 'µService Webapi test and build'
+        inputs:
+          mavenOptions: $(MAVEN_OPTS)
+          mavenPomFile: 'uservice-webapi/pom.xml'
+          goals: 'install'
+          javaHomeOption: JDKVersion
+          jdkVersionOption: 1.17
+          #codeCoverageToolOption: JaCoCo
+          #sonarQubeRunAnalysis: true
+          #isJacocoCoverageReportXML: true
+          # options:
+          #  - disable log entries (a lot of entries) related to artifacts downloaded by maven
+          #  - use semversion for generated backend
+          #  - use settings.xml stored in Azure secure file areas
+          options: -B --no-transfer-progress -DREVISION=$(SEMVERSION) -s $(mvnSettings.secureFilePath)
+          checkStyleRunAnalysis: true # We use checkstyle in coding, so let's use it with Maven as well
+          publishJUnitResults: true
+     
+      - task: Maven@4
+        displayName: Build µService Deal docker image
         inputs:
           mavenOptions: $(MAVEN_OPTS)
           mavenPomFile: 'uservice-deal/pom.xml'
@@ -125,5 +154,18 @@ jobs:
           # options:
           #  - disable log entries (a lot of entries) related to artifacts downloaded by maven
           options: -B --no-transfer-progress -Djib.to.tags=latest,$(SEMVERSION)      
+          
+      - task: Maven@4
+        displayName: Build µService Webapidocker image
+        inputs:
+          mavenOptions: $(MAVEN_OPTS)
+          mavenPomFile: 'uservice-webapi/pom.xml'
+          goals: 'jib:buildTar'
+          javaHomeOption: JDKVersion
+          jdkVersionOption: 1.17
+          # options:
+          #  - disable log entries (a lot of entries) related to artifacts downloaded by maven
+          options: -B --no-transfer-progress -Djib.to.tags=latest,$(SEMVERSION)      
+          
 
       
