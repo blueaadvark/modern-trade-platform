@@ -14,7 +14,7 @@
   <modules>
     <module>host</module>
     <module>host-api</module>
-    <module>host-api-test</module>
+    <!-- module>host-api-test</module - TODO: Reintroduce on full build -->
     <module>host-api-client</module>
   </modules>
 
