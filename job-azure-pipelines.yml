@@ -79,7 +79,23 @@ jobs:
           #  - disable log entries (a lot of entries) related to artifacts downloaded by maven
           options: -B --no-transfer-progress
           checkStyleRunAnalysis: true # We use checkstyle in coding, so let's use it with Maven as well
-          
+
+      - task: SonarSource.sonarcloud.14d9cde6-c1da-4d55-aa01-2965cd301255.SonarCloudPrepare@1
+        displayName: 'Prepare analysis on SonarCloud'
+        inputs:
+          SonarCloud: 'Sonar Test'
+          organization: blueaadvark
+          scannerMode: Other
+          extraProperties:
+            #sonar.projectKey=932308e2aea612ffd10a63b8a43573cf553e4c4b
+            sonar.projectKey=blueaadvark
+
+      - task: DownloadSecureFile@1
+        displayName: 'Download secure file'
+        name: mvnSettings
+        inputs:
+          secureFile: '0688ab68-a2cc-4d09-9942-161e3d378426'
+                 
       - task: Maven@4
         displayName: 'µService test and build'
         inputs:
@@ -88,10 +104,13 @@ jobs:
           goals: 'install'
           javaHomeOption: JDKVersion
           jdkVersionOption: 1.17
+          codeCoverageToolOption: JaCoCo
+          sonarQubeRunAnalysis: true
+          isJacocoCoverageReportXML: true
           # options:
           #  - disable log entries (a lot of entries) related to artifacts downloaded by maven
           #  - use semversion for generated backend
-          options: -B --no-transfer-progress -DREVISION=$(SEMVERSION)
+          options: -B --no-transfer-progress -DREVISION=$(SEMVERSION) -s $(mvnSettings.secureFilePath)
           checkStyleRunAnalysis: true # We use checkstyle in coding, so let's use it with Maven as well
           publishJUnitResults: true
 
@@ -105,6 +124,6 @@ jobs:
           jdkVersionOption: 1.17
           # options:
           #  - disable log entries (a lot of entries) related to artifacts downloaded by maven
-          options: -B --no-transfer-progress -Djib.to.tags=latest,$(SEMVERSION)
+          options: -B --no-transfer-progress -Djib.to.tags=latest,$(SEMVERSION)      
 
       
