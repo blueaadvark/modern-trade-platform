@@ -23,6 +23,7 @@ trigger:
       - /api/
       - /libs-java/
       - /uservice-webapi/
+      - /uservice-lifecycle/
 
 pr:
   branches:
@@ -35,6 +36,7 @@ pr:
       - /api/
       - /libs-java/
       - /uservice-webapi/
+      - /uservice-lifecycle/
 
 jobs:
   - job: CICD
@@ -104,8 +106,6 @@ jobs:
           #  - use settings.xml stored in Azure secure file areas
           options: -B --no-transfer-progress -s $(mvnSettings.secureFilePath)
           checkStyleRunAnalysis: true # We use checkstyle in coding, so let's use it with Maven as well
-
-
                  
       - task: Maven@4
         displayName: 'µService Deal test and build'
@@ -146,6 +146,25 @@ jobs:
           publishJUnitResults: true
      
       - task: Maven@4
+        displayName: 'µService Lifecycle test and build'
+        inputs:
+          mavenOptions: $(MAVEN_OPTS)
+          mavenPomFile: 'uservice-lifecycle/pom.xml'
+          goals: 'install'
+          javaHomeOption: JDKVersion
+          jdkVersionOption: 1.17
+          #codeCoverageToolOption: JaCoCo
+          sonarQubeRunAnalysis: true
+          isJacocoCoverageReportXML: true
+          # options:
+          #  - disable log entries (a lot of entries) related to artifacts downloaded by maven
+          #  - use semversion for generated backend
+          #  - use settings.xml stored in Azure secure file areas
+          options: -B --no-transfer-progress -s $(mvnSettings.secureFilePath)
+          checkStyleRunAnalysis: true # We use checkstyle in coding, so let's use it with Maven as well
+          publishJUnitResults: true
+
+      - task: Maven@4
         displayName: Build µService Deal docker image
         inputs:
           mavenOptions: $(MAVEN_OPTS)
@@ -158,10 +177,22 @@ jobs:
           options: -B --no-transfer-progress -Djib.to.tags=latest,$(SEMVERSION)      
           
       - task: Maven@4
-        displayName: Build µService Webapid ocker image
+        displayName: Build µService Webapi docker image
         inputs:
           mavenOptions: $(MAVEN_OPTS)
           mavenPomFile: 'uservice-webapi/pom.xml'
+          goals: 'jib:buildTar'
+          javaHomeOption: JDKVersion
+          jdkVersionOption: 1.17
+          # options:
+          #  - disable log entries (a lot of entries) related to artifacts downloaded by maven
+          options: -B --no-transfer-progress -Djib.to.tags=latest,$(SEMVERSION)      
+      
+      - task: Maven@4
+        displayName: Build µService Lifecycle docker image
+        inputs:
+          mavenOptions: $(MAVEN_OPTS)
+          mavenPomFile: 'uservice-lifecycle/pom.xml'
           goals: 'jib:buildTar'
           javaHomeOption: JDKVersion
           jdkVersionOption: 1.17
