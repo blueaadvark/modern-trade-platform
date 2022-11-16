@@ -25,6 +25,7 @@ trigger:
       - /uservice-webapi/
       - /uservice-lifecycle/
       - /uservice-calculation/
+      - /uservice-market-data/
 
 pr:
   branches:
@@ -39,6 +40,7 @@ pr:
       - /uservice-webapi/
       - /uservice-lifecycle/
       - /uservice-calculation/
+      - /uservice-market-data/
 
 jobs:
   - job: CICD
@@ -101,8 +103,8 @@ jobs:
           javaHomeOption: JDKVersion
           jdkVersionOption: 1.17
           #codeCoverageToolOption: JaCoCo
-          #sonarQubeRunAnalysis: true
-          #isJacocoCoverageReportXML: true
+          sonarQubeRunAnalysis: true
+          isJacocoCoverageReportXML: true
           # options:
           #  - disable log entries (a lot of entries) related to artifacts downloaded by maven
           #  - use settings.xml stored in Azure secure file areas
@@ -187,6 +189,25 @@ jobs:
           publishJUnitResults: true
 
       - task: Maven@4
+        displayName: 'µService Market Data test and build'
+        inputs:
+          mavenOptions: $(MAVEN_OPTS)
+          mavenPomFile: 'uservice-market-data/pom.xml'
+          goals: 'install'
+          javaHomeOption: JDKVersion
+          jdkVersionOption: 1.17
+          #codeCoverageToolOption: JaCoCo
+          sonarQubeRunAnalysis: true
+          isJacocoCoverageReportXML: true
+          # options:
+          #  - disable log entries (a lot of entries) related to artifacts downloaded by maven
+          #  - use semversion for generated backend
+          #  - use settings.xml stored in Azure secure file areas
+          options: -B --no-transfer-progress -s $(mvnSettings.secureFilePath)
+          checkStyleRunAnalysis: true # We use checkstyle in coding, so let's use it with Maven as well
+          publishJUnitResults: true
+
+      - task: Maven@4
         displayName: Build µService Deal docker image
         inputs:
           mavenOptions: $(MAVEN_OPTS)
@@ -233,6 +254,18 @@ jobs:
           # options:
           #  - disable log entries (a lot of entries) related to artifacts downloaded by maven
           options: -B --no-transfer-progress -Djib.to.tags=latest,$(SEMVERSION)      
-          
+
+      - task: Maven@4
+        displayName: Build µService Market Data docker image
+        inputs:
+          mavenOptions: $(MAVEN_OPTS)
+          mavenPomFile: 'uservice-market-data/pom.xml'
+          goals: 'jib:buildTar'
+          javaHomeOption: JDKVersion
+          jdkVersionOption: 1.17
+          # options:
+          #  - disable log entries (a lot of entries) related to artifacts downloaded by maven
+          options: -B --no-transfer-progress -Djib.to.tags=latest,$(SEMVERSION)      
+                  
 
       
