@@ -102,7 +102,7 @@ jobs:
           goals: 'install'
           javaHomeOption: JDKVersion
           jdkVersionOption: 1.17
-          codeCoverageToolOption: JaCoCo
+          #codeCoverageToolOption: JaCoCo - Currently Breaks build
           sonarQubeRunAnalysis: true
           isJacocoCoverageReportXML: true
           # options:
