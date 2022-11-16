@@ -103,8 +103,8 @@ jobs:
           javaHomeOption: JDKVersion
           jdkVersionOption: 1.17
           #codeCoverageToolOption: JaCoCo
-          #sonarQubeRunAnalysis: true
-          #isJacocoCoverageReportXML: true
+          sonarQubeRunAnalysis: true
+          isJacocoCoverageReportXML: true
           # options:
           #  - disable log entries (a lot of entries) related to artifacts downloaded by maven
           #  - use settings.xml stored in Azure secure file areas
