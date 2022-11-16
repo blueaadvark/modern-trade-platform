@@ -21,9 +21,7 @@
   <properties>
     <api.version>0.1.0-SNAPSHOT</api.version>
     <libs.version>0.1.0-SNAPSHOT</libs.version>
-    <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/CCReport43F6D5EF/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
   </properties>
-
   <dependencyManagement>
     <dependencies>
 
@@ -158,26 +156,6 @@
           <skip>true</skip>
         </configuration>
       </plugin>
-
-      <!-- Required to fix Jacoco issue with multi module builds 
-      <plugin>
-        <groupId>org.sonarsource.scanner.maven</groupId>
-        <artifactId>sonar-maven-plugin</artifactId>
-      </plugin> 
-      <plugin>
-        <groupId>org.jacoco</groupId>
-        <artifactId>jacoco-maven-plugin</artifactId>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <configuration>
-            <source>1.8</source>
-            <target>1.8</target>
-        </configuration>
-      </plugin>
-      -->
-
     </plugins>
   </build>
 
