@@ -63,7 +63,6 @@ jobs:
           organization: blueaadvark
           scannerMode: Other
           extraProperties:
-            #sonar.projectKey=932308e2aea612ffd10a63b8a43573cf553e4c4b
             sonar.projectKey=blueaadvark
 
       - task: DownloadSecureFile@1
