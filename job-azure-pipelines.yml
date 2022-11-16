@@ -177,7 +177,7 @@ jobs:
           options: -B --no-transfer-progress -Djib.to.tags=latest,$(SEMVERSION)      
           
       - task: Maven@4
-        displayName: Build µService Webapid docker image
+        displayName: Build µService Webapi docker image
         inputs:
           mavenOptions: $(MAVEN_OPTS)
           mavenPomFile: 'uservice-webapi/pom.xml'
