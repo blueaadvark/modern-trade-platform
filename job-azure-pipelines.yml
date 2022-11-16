@@ -42,7 +42,7 @@ pr:
 
 jobs:
   - job: CICD
-    displayName: µService Deal CI/CD build
+    displayName: µService CI/CD build
     pool:
       vmImage: ubuntu-latest
 
