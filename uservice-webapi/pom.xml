@@ -22,7 +22,6 @@
     <api.version>0.1.0-SNAPSHOT</api.version>
     <libs.version>0.1.0-SNAPSHOT</libs.version>
   </properties>
-
   <dependencyManagement>
     <dependencies>
 
@@ -157,7 +156,6 @@
           <skip>true</skip>
         </configuration>
       </plugin>
-
     </plugins>
   </build>
 
