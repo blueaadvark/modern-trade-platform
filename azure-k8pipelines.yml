@@ -122,4 +122,4 @@ jobs:
           azureSubscription: 'Azure subscription 1 (c348faad-8244-45a7-80e9-2267f47525f0)'
           azureContainerRegistry: '{"loginServer":"mycontainerregistryjobtmp.azurecr.io", "id" : "/subscriptions/c348faad-8244-45a7-80e9-2267f47525f0/resourceGroups/myapp-rg/providers/Microsoft.ContainerRegistry/registries/mycontainerregistryjobtmp"}'
           action: 'Push an image'
-          imageName: 'uservice-deal/initdb/target/jib-image.tar'
+          imageName: 'deal-service-initdb:latest'
