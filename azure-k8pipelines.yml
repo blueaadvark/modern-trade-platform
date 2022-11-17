@@ -121,7 +121,7 @@ jobs:
           azureSubscription: 'Azure subscription 1 (c348faad-8244-45a7-80e9-2267f47525f0)'
           azureContainerRegistry: '{"loginServer":"mycontainerregistryjobtmp.azurecr.io", "id" : "/subscriptions/c348faad-8244-45a7-80e9-2267f47525f0/resourceGroups/myapp-rg/providers/Microsoft.ContainerRegistry/registries/mycontainerregistryjobtmp"}'
           action: 'Run a Docker command'
-          customCommand: 'tag -i deal-service-initdb mycontainerregistryjobtmp.azurecr.io/deal-service-initdb'
+          customCommand: 'tag deal-service-initdb mycontainerregistryjobtmp.azurecr.io/deal-service-initdb'
       
 
       - task: Docker@0
