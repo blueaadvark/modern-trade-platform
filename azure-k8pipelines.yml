@@ -141,6 +141,7 @@ stages:
   - deployment: helm_publish_aks
     displayName: deploy to aks
     environment: 
+      name: Dev
       resourceType: Azure Resource Manager
     strategy:
       runOnce:
