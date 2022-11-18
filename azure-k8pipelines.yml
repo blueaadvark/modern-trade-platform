@@ -134,8 +134,22 @@ stages:
             action: 'Push an image'
             imageName: 'deal-service-initdb:latest'
 
-        - task: HelmInstaller@0
-          displayName: install helm
-          inputs:
-            helmVersion: 'latest'
-            installKubectl: false
+- stage: cd
+  displayName: Deploy
+  dependsOn: Build
+  jobs:
+  - deployment: helm_publish_aks
+    displayName: deploy to aks
+    environment: 
+      name: PROD
+      resourceName: helmdemo
+      resourceType: Kubernetes
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: HelmInstaller@0
+            displayName: install helm
+            inputs:
+              helmVersion: 'latest'
+              installKubectl: false
