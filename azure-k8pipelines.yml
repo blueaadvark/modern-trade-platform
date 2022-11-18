@@ -133,3 +133,15 @@ stages:
             azureContainerRegistry: '{"loginServer":"mycontainerregistryjobtmp.azurecr.io", "id" : "/subscriptions/c348faad-8244-45a7-80e9-2267f47525f0/resourceGroups/myapp-rg/providers/Microsoft.ContainerRegistry/registries/mycontainerregistryjobtmp"}'
             action: 'Push an image'
             imageName: 'deal-service-initdb:latest'
+
+        - task: HelmDeploy@0
+          inputs:
+            connectionType: 'Kubernetes Service Connection'
+            kubernetesServiceConnection: 'crk8sconn'
+            namespace: 'staging'
+            command: 'upgrade'
+            chartType: FilePath
+            chartPath: .helm/com.crd.projectname
+            releaseName: com.crd.projectname
+            install: true
+            waitForExecution: false
