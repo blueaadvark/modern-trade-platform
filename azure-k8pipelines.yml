@@ -140,14 +140,14 @@ stages:
             helmVersion: 'latest'
             installKubectl: false
 
-        #- task: HelmDeploy@0
-        #  displayName: 'helm package'
-        #  inputs:
-        #    azureSubscription: crk8sconn
-        #    azureResourceGroup: 'myapp-rg'
-        #    kubernetesCluster: charlesrivercluster
-        #    command: package
-        #    chartPath: helm/com.crd.projectname/Chart.yaml
+        - task: HelmDeploy@0
+          displayName: 'helm package'
+          inputs:
+            azureSubscription: crk8sconn
+            azureResourceGroup: 'myapp-rg'
+            kubernetesCluster: charlesrivercluster
+            command: package
+            chartPath: helm/com.crd.projectname
         - task: HelmDeploy@0
           displayName: Helm deploy
           inputs:
