@@ -34,77 +34,102 @@ pr:
       - /api/
       - /libs-java/
 
-jobs:
-  - job: CICD
-    displayName: µService Deal CI/CD build
-    pool:
-      vmImage: ubuntu-latest
+stages:
+- stage: Build
+  jobs:
+    - job: CICD
+      displayName: µService Deal CI/CD build
+      pool:
+        vmImage: ubuntu-latest
 
-    steps:
-      - task: Cache@2
-        inputs:
-          key: 'maven | "$(Agent.OS)" | **/pom.xml'
-          restoreKeys: |
-            maven | "$(Agent.OS)"
-            maven
-          path: $(MAVEN_CACHE_FOLDER)
-        displayName: Cache Maven local repo
+      steps:
+        - task: Cache@2
+          inputs:
+            key: 'maven | "$(Agent.OS)" | **/pom.xml'
+            restoreKeys: |
+              maven | "$(Agent.OS)"
+              maven
+            path: $(MAVEN_CACHE_FOLDER)
+          displayName: Cache Maven local repo
 
-      - bash: |
-          echo "##vso[task.setvariable variable=SEMVERSION]$(head -1 uservice-deal/.semversion)"
-        displayName: Use version from local .semversion file
+        - bash: |
+            echo "##vso[task.setvariable variable=SEMVERSION]$(head -1 uservice-deal/.semversion)"
+          displayName: Use version from local .semversion file
 
-      - task: Maven@4
-        displayName: 'API libs build'
-        inputs:
-          mavenOptions: $(MAVEN_OPTS)
-          mavenPomFile: 'api/client-java/pom.xml'
-          goals: 'install'
-          javaHomeOption: JDKVersion
-          jdkVersionOption: 1.17
-          # options:
-          #  - disable log entries (a lot of entries) related to artifacts downloaded by maven
-          options: -B --no-transfer-progress
-          checkStyleRunAnalysis: true # We use checkstyle in coding, so let's use it with Maven as well
+        - task: Maven@4
+          displayName: 'API libs build'
+          inputs:
+            mavenOptions: $(MAVEN_OPTS)
+            mavenPomFile: 'api/client-java/pom.xml'
+            goals: 'install'
+            javaHomeOption: JDKVersion
+            jdkVersionOption: 1.17
+            # options:
+            #  - disable log entries (a lot of entries) related to artifacts downloaded by maven
+            options: -B --no-transfer-progress
+            checkStyleRunAnalysis: true # We use checkstyle in coding, so let's use it with Maven as well
 
-      - task: Maven@4
-        displayName: 'Shared libs build'
-        inputs:
-          mavenOptions: $(MAVEN_OPTS)
-          mavenPomFile: 'libs-java/pom.xml'
-          goals: 'install'
-          javaHomeOption: JDKVersion
-          jdkVersionOption: 1.17
-          # options:
-          #  - disable log entries (a lot of entries) related to artifacts downloaded by maven
-          options: -B --no-transfer-progress
-          checkStyleRunAnalysis: true # We use checkstyle in coding, so let's use it with Maven as well
-          
-      - task: Maven@4
-        displayName: 'µService test and build'
-        inputs:
-          mavenOptions: $(MAVEN_OPTS)
-          mavenPomFile: 'uservice-deal/pom.xml'
-          goals: 'install'
-          javaHomeOption: JDKVersion
-          jdkVersionOption: 1.17
-          # options:
-          #  - disable log entries (a lot of entries) related to artifacts downloaded by maven
-          #  - use semversion for generated backend
-          options: -B --no-transfer-progress -DREVISION=$(SEMVERSION)
-          checkStyleRunAnalysis: true # We use checkstyle in coding, so let's use it with Maven as well
-          publishJUnitResults: true
+        - task: Maven@4
+          displayName: 'Shared libs build'
+          inputs:
+            mavenOptions: $(MAVEN_OPTS)
+            mavenPomFile: 'libs-java/pom.xml'
+            goals: 'install'
+            javaHomeOption: JDKVersion
+            jdkVersionOption: 1.17
+            # options:
+            #  - disable log entries (a lot of entries) related to artifacts downloaded by maven
+            options: -B --no-transfer-progress
+            checkStyleRunAnalysis: true # We use checkstyle in coding, so let's use it with Maven as well
+            
+        - task: Maven@4
+          displayName: 'µService test and build'
+          inputs:
+            mavenOptions: $(MAVEN_OPTS)
+            mavenPomFile: 'uservice-deal/pom.xml'
+            goals: 'install'
+            javaHomeOption: JDKVersion
+            jdkVersionOption: 1.17
+            # options:
+            #  - disable log entries (a lot of entries) related to artifacts downloaded by maven
+            #  - use semversion for generated backend
+            options: -B --no-transfer-progress -DREVISION=$(SEMVERSION)
+            checkStyleRunAnalysis: true # We use checkstyle in coding, so let's use it with Maven as well
+            publishJUnitResults: true
 
-      - task: Maven@4
-        displayName: Build µService docker image
-        inputs:
-          mavenOptions: $(MAVEN_OPTS)
-          mavenPomFile: 'uservice-deal/pom.xml'
-          goals: 'jib:buildTar'
-          javaHomeOption: JDKVersion
-          jdkVersionOption: 1.17
-          # options:
-          #  - disable log entries (a lot of entries) related to artifacts downloaded by maven
-          options: -B --no-transfer-progress -Djib.to.tags=latest,$(SEMVERSION)
+        - task: Maven@4
+          displayName: Build µService docker image
+          inputs:
+            mavenOptions: $(MAVEN_OPTS)
+            mavenPomFile: 'uservice-deal/pom.xml'
+            goals: 'jib:buildTar'
+            javaHomeOption: JDKVersion
+            jdkVersionOption: 1.17
+            # options:
+            #  - disable log entries (a lot of entries) related to artifacts downloaded by maven
+            options: -B --no-transfer-progress -Djib.to.tags=latest,$(SEMVERSION)
 
-      
+        - task: Docker@0
+          displayName: 'Docker Load'
+          inputs:
+            azureSubscription: 'Azure subscription 1 (c348faad-8244-45a7-80e9-2267f47525f0)'
+            azureContainerRegistry: '{"loginServer":"mycontainerregistryjobtmp.azurecr.io", "id" : "/subscriptions/c348faad-8244-45a7-80e9-2267f47525f0/resourceGroups/myapp-rg/providers/Microsoft.ContainerRegistry/registries/mycontainerregistryjobtmp"}'
+            action: 'Run a Docker command'
+            customCommand: 'load -i uservice-deal/initdb/target/jib-image.tar'
+
+        - task: Docker@0
+          displayName: 'Docker Tag'
+          inputs:
+            azureSubscription: 'Azure subscription 1 (c348faad-8244-45a7-80e9-2267f47525f0)'
+            azureContainerRegistry: '{"loginServer":"mycontainerregistryjobtmp.azurecr.io", "id" : "/subscriptions/c348faad-8244-45a7-80e9-2267f47525f0/resourceGroups/myapp-rg/providers/Microsoft.ContainerRegistry/registries/mycontainerregistryjobtmp"}'
+            action: 'Run a Docker command'
+            customCommand: 'tag deal-service-initdb mycontainerregistryjobtmp.azurecr.io/deal-service-initdb'
+        
+
+        - task: Docker@0
+          displayName: 'Push an image'
+          inputs:
+            azureSubscription: 'Azure subscription 1 (c348faad-8244-45a7-80e9-2267f47525f0)'
+            azureContainerRegistry: '{"loginServer":"mycontainerregistryjobtmp.azurecr.io", "id" : "/subscriptions/c348faad-8244-45a7-80e9-2267f47525f0/resourceGroups/myapp-rg/providers/Microsoft.ContainerRegistry/registries/mycontainerregistryjobtmp"}'
+            action: 'Push an image'
+            imageName: 'deal-service-initdb:latest'
