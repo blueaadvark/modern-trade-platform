@@ -134,14 +134,8 @@ stages:
             action: 'Push an image'
             imageName: 'deal-service-initdb:latest'
 
-        - task: HelmDeploy@0
+        - task: HelmInstaller@0
+          displayName: install helm
           inputs:
-            connectionType: 'Kubernetes Service Connection'
-            kubernetesServiceConnection: 'crk8sconn'
-            namespace: 'staging'
-            command: 'upgrade'
-            chartType: FilePath
-            chartPath: .helm/com.crd.projectname
-            releaseName: com.crd.projectname
-            install: true
-            waitForExecution: false
+            helmVersion: 'latest'
+            installKubectl: false
