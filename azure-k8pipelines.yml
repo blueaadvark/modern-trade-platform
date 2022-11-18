@@ -133,22 +133,26 @@ stages:
             azureContainerRegistry: '{"loginServer":"mycontainerregistryjobtmp.azurecr.io", "id" : "/subscriptions/c348faad-8244-45a7-80e9-2267f47525f0/resourceGroups/myapp-rg/providers/Microsoft.ContainerRegistry/registries/mycontainerregistryjobtmp"}'
             action: 'Push an image'
             imageName: 'deal-service-initdb:latest'
+        
+        - task: HelmDeploy@0
+          displayName: 'helm init'
+          inputs:
+            azureSubscription: crk8sconn
+            azureResourceGroup: 'myapp-rg'
+            kubernetesCluster: charlesrivercluster
+            command: init
 
-- stage: cd
-  displayName: Deploy
-  dependsOn: Build
-  jobs:
-  - deployment: helm_publish_aks
-    displayName: deploy to aks
-    environment: 
-      name: Dev
-      resourceType: Azure Resource Manager
-    strategy:
-      runOnce:
-        deploy:
-          steps:
-          - task: HelmInstaller@0
-            displayName: install helm
-            inputs:
-              helmVersion: 'latest'
-              installKubectl: false
+        - task: HelmDeploy@0
+          displayName: 'helm package'
+          inputs:
+            azureSubscription: crk8sconn
+            azureResourceGroup: 'myapp-rg'
+            kubernetesCluster: charlesrivercluster
+            command: package
+            chartPath: helm/com.crd.projectname/Chart.yaml
+
+        - task: KubernetesManifest@0
+          displayName: deploy
+          inputs:
+            kubernetesServiceConnection: 'cr-kubernetes-service'
+            manifests: helm/com.crd.proje
