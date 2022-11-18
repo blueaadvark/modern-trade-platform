@@ -134,13 +134,13 @@ stages:
             action: 'Push an image'
             imageName: 'deal-service-initdb:latest'
         
-        - task: HelmDeploy@0
-          displayName: 'helm init'
-          inputs:
-            azureSubscription: crk8sconn
-            azureResourceGroup: 'myapp-rg'
-            kubernetesCluster: charlesrivercluster
-            command: init
+        #- task: HelmDeploy@0
+        #  displayName: 'helm init'
+        #  inputs:
+        #    azureSubscription: crk8sconn
+        #    azureResourceGroup: 'myapp-rg'
+        #    kubernetesCluster: charlesrivercluster
+        #    command: init
 
         - task: HelmDeploy@0
           displayName: 'helm package'
