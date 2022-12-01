@@ -16,7 +16,6 @@ import com.crd.projectname.PostgresDbExtension;
 import io.grpc.ManagedChannelBuilder;
 
 @SpringBootTest(webEnvironment = WebEnvironment.NONE)
-@ActiveProfiles("test")
 @ExtendWith(PostgresDbExtension.class)
 class DealApiServiceTest {
 
