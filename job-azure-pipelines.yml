@@ -119,16 +119,16 @@ jobs:
           goals: 'install'
           javaHomeOption: JDKVersion
           jdkVersionOption: 1.17
-          codeCoverageToolOption: JaCoCo
-          sonarQubeRunAnalysis: true
-          isJacocoCoverageReportXML: true
+          #codeCoverageToolOption: JaCoCo
+          #sonarQubeRunAnalysis: true
+          #isJacocoCoverageReportXML: true
           # options:
           #  - disable log entries (a lot of entries) related to artifacts downloaded by maven
           #  - use semversion for generated backend
           #  - use settings.xml stored in Azure secure file areas
           options: -B --no-transfer-progress -DREVISION=$(SEMVERSION) -s $(mvnSettings.secureFilePath)
-          checkStyleRunAnalysis: true # We use checkstyle in coding, so let's use it with Maven as well
-          publishJUnitResults: true
+          #checkStyleRunAnalysis: true # We use checkstyle in coding, so let's use it with Maven as well
+          #publishJUnitResults: true
 
 
       - task: Maven@4
