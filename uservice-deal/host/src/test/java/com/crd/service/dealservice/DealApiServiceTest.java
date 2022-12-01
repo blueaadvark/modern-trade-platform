@@ -6,6 +6,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.test.context.ActiveProfiles;
 
 import com.crd.common.grpc.DealResources.GetVersionRequest;
 import com.crd.common.grpc.DealResources.GetVersionResponse;
@@ -15,6 +16,7 @@ import com.crd.projectname.PostgresDbExtension;
 import io.grpc.ManagedChannelBuilder;
 
 @SpringBootTest(webEnvironment = WebEnvironment.NONE)
+@ActiveProfiles("test")
 @ExtendWith(PostgresDbExtension.class)
 class DealApiServiceTest {
 
