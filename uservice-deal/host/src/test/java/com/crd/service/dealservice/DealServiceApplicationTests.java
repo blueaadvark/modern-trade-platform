@@ -10,6 +10,7 @@ import com.crd.projectname.PostgresDbExtension;
 @ExtendWith(PostgresDbExtension.class)
 class DealServiceApplicationTests {
 
+  // TODO: Fix on Azure pipeline
   //@Test
   //void contextLoads() {
     // intentionally left empty - just used here to test if the uservice is able to start
