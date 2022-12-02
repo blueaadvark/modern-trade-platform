@@ -26,7 +26,7 @@ class DealApiServiceTest {
   @Test
   public void checkVersion() {
 
-    log.info("DEALAPISERVCIETEST ----- Test checkVersion");
+    log.info("DEALAPISERVCIETEST ----- Test checkVersion - 2");
     var channel = ManagedChannelBuilder.forAddress("localhost", grpcPort)
         .usePlaintext()
         .build();

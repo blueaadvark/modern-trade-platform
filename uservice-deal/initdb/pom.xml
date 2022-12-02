@@ -39,10 +39,6 @@
 
   </dependencies>
 
-  <properties>
-     <skip-docker-image>true</skip-docker-image>
-  </properties>
-
   <build>
     <plugins>
       
@@ -73,10 +69,7 @@
         <version>3.3.1</version>
         <configuration>
           <!-- We don't want jib to execute on this module-->
-          <skip>${skip-docker-image}</skip>
-          <to>
-            <image>${image.path}</image>
-          </to>
+          <skip>true</skip>
         </configuration>
       </plugin>
     </plugins>
