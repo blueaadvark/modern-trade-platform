@@ -6,6 +6,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.testcontainers.junit.jupiter.Testcontainers;
 
 import com.crd.common.grpc.DealResources.GetVersionRequest;
 import com.crd.common.grpc.DealResources.GetVersionResponse;
@@ -18,6 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 @SpringBootTest(webEnvironment = WebEnvironment.NONE)
 @ExtendWith(PostgresDbExtension.class)
 @Slf4j
+@Testcontainers
 class DealApiServiceTest {
 
   @Value("${grpc.server.port}")
@@ -26,7 +28,7 @@ class DealApiServiceTest {
   @Test
   public void checkVersion() {
 
-    log.info("DEALAPISERVCIETEST ----- Test checkVersion - 2");
+    log.info("DEALAPISERVCIETEST ----- Test checkVersion - 3");
     var channel = ManagedChannelBuilder.forAddress("localhost", grpcPort)
         .usePlaintext()
         .build();

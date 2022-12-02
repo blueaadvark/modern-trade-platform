@@ -4,11 +4,13 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.testcontainers.junit.jupiter.Testcontainers;
 
 import com.crd.projectname.PostgresDbExtension;
 
 @SpringBootTest(webEnvironment = WebEnvironment.NONE)
 @ExtendWith(PostgresDbExtension.class)
+@Testcontainers
 class DealServiceApplicationTests {
 
   @Test
