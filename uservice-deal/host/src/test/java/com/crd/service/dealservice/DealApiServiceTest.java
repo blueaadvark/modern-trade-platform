@@ -13,9 +13,11 @@ import com.crd.common.grpc.DealServiceGrpc;
 import com.crd.projectname.PostgresDbExtension;
 
 import io.grpc.ManagedChannelBuilder;
+import lombok.extern.slf4j.Slf4j;
 
 @SpringBootTest(webEnvironment = WebEnvironment.NONE)
 @ExtendWith(PostgresDbExtension.class)
+@Slf4j
 class DealApiServiceTest {
 
   @Value("${grpc.server.port}")
@@ -24,6 +26,7 @@ class DealApiServiceTest {
   @Test
   public void checkVersion() {
 
+    log.info("DEALAPISERVCIETEST ----- Test checkVersion");
     var channel = ManagedChannelBuilder.forAddress("localhost", grpcPort)
         .usePlaintext()
         .build();
